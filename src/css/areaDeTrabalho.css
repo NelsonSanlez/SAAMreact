@@ -110,3 +110,9 @@ footer ul{
     color: #FFFFFF;
     font-family: Jura;
 }
+
+/* Button */
+.btnEscuro{
+    background-color: #03045E;
+    color: #FFFFFF;
+}

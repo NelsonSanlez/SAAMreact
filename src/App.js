@@ -13,7 +13,7 @@ function Header() {
       <nav className="navbar navbar-expand-md">
         <div className="container-fluid">
           <img src={logo} />
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+          <button className="navbar-toggler " type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
             aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@ function Header() {
               </li>
             </ul>
             <div className="pe-2">
-              <button className="btn btn-primary" type="submit">Logout</button>
+              <button className="btn btnEscuro" type="submit">Logout</button>
             </div>
           </div>
         </div>
