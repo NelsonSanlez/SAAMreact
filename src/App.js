@@ -2,13 +2,13 @@ import './css/areaDeTrabalho.module.css';
 
 import {Header} from './components/Header.js';
 import {Footer} from './components/Footer.js';
-import {MainInicio} from './components/MainInicio';
+import {MainContent} from './components/MainContent';
 
 function App() {
   return (
     <div className="App container-fluid">
       <Header />
-      <MainInicio />
+      <MainContent />
       <Footer />
     </div>
   );
