@@ -1,0 +1,23 @@
+/* Footer Css*/
+footer {
+    background-color: #03045E;
+}
+
+footer ul{
+    overflow-wrap: break-word;
+}
+
+.SAAM_footer {
+    background-color: #5C6EA3;
+    color: #03045E;
+    font-family: zen dots;
+    font-size: 2.2rem;
+    font-weight: bold;
+    overflow-wrap: break-word;
+
+}
+
+.footerFont {
+    color: #FFFFFF;
+    font-family: Jura;
+}

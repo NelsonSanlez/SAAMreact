@@ -1,0 +1,14 @@
+.currentPage {
+    color: white;
+    background-color: #03045E;
+}
+
+.navbarRound {
+    text-align: center;
+    align-self: center;
+    border-end-start-radius: 50px;
+    border-bottom-right-radius: 50px;
+    justify-content: space-between 5px;
+    box-shadow: 1px 5px 5px black;
+    background-color: white;
+}
