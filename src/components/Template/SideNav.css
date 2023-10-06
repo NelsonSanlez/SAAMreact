@@ -12,11 +12,6 @@ main {
     overflow-x: auto;
 }
 
-main div button{
-    width: 100%;
-    height: 5rem;
-    box-shadow: 1px 3px 3px black;
-}
 
 .sideBar {
     background-color: #FFFFFF;

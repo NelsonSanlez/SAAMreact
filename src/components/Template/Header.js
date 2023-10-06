@@ -1,5 +1,5 @@
-import logo from '../images/SAAM_SistemaAjudaAdministracaoMedicamentos.png';
-import '../css/Header.css'
+import logo from '../../images/SAAM_SistemaAjudaAdministracaoMedicamentos.png';
+import './Header.css'
 
 function Header() {
   

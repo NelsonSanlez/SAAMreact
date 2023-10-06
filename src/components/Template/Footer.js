@@ -1,8 +1,8 @@
-import '../css/Footer.css'
-import iconTwitter from '../images/twitter_outline_icon.png';
-import iconInstagram from '../images/instagram_fill_icon.png';
-import iconFacebook from '../images/facebook_outline_icon.png';
-import iconLinkedin from '../images/linkedin_outline.png';
+import './Footer.css'
+import iconTwitter from '../../images/twitter_outline_icon.png';
+import iconInstagram from '../../images/instagram_fill_icon.png';
+import iconFacebook from '../../images/facebook_outline_icon.png';
+import iconLinkedin from '../../images/linkedin_outline.png';
 
 function Footer(){
     return(
