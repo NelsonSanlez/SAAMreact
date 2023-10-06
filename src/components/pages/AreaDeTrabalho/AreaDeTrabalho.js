@@ -133,7 +133,9 @@ function AreaDeTrabalho() {
     useEffect(() => {
         const startPatient = async () => {
             const listaPacientes = await pacientes();
-            showData(listaPacientes)
+            if (listaPacientes) {
+                showData(listaPacientes)
+            }
         }
         startPatient()
     })

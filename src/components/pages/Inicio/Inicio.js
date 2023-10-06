@@ -31,12 +31,10 @@ function Inicio(props) {
         const sobrenome = document.querySelector("#sobrenome").value;
         const numUtente = document.querySelector("#numUtente").value;
         const email = document.querySelector("#email").value;
-        const medicamento = document.querySelector("#medicamento").value;
-        const horario = document.querySelector("#horario").value;
-        const via = document.querySelector("#via").value;
-        const dose = document.querySelector("#dose").value;
+        const telemovel = document.querySelector("#telemovel").value;
+        
 
-        const data = { nome, sobrenome, numUtente, email, medicamento, horario, via, dose };
+        const data = { nome, sobrenome, numUtente, telemovel, email};
 
         const res = await addPaciente(data);
 
@@ -44,12 +42,12 @@ function Inicio(props) {
             const modalBodyRes = document.querySelector(`.modalbodyRes`);
             modalBodyRes.textContent = `Paciente cadastrado com Sucesso!`;
             const modalFooterRes = document.querySelector(`.modalfooterRes`);
-            modalFooterRes.innerHTML = `<button type="button" class="btn btn-darkblue rounded-pill" data-bs-dismiss="modal">Fechar</button>`
+            modalFooterRes.innerHTML = `<button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal">Fechar</button>`
         } else {
             const modalRes = document.querySelector(`.modalbodyRes`);
             modalRes.textContent = `Falha ao cadastrar Paciente!`
             const modalFooterRes = document.querySelector(`.modalfooterRes`);
-            modalFooterRes.innerHTML = `<button type="button" class="btn btn-darkblue rounded-pill" data-bs-dismiss="modal">Fechar</button>`
+            modalFooterRes.innerHTML = `<button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal">Fechar</button>`
         }
     }
 
@@ -87,12 +85,12 @@ function Inicio(props) {
             const modalBodyRes = document.querySelector(`.modalbodyDel`);
             modalBodyRes.textContent = `Paciente Deletado com Sucesso!`;
             const modalFooterRes = document.querySelector(`.modalfooterDel`);
-            modalFooterRes.innerHTML = `<button type="button" class="btn btn-darkblue rounded-pill" data-bs-dismiss="modal">Fechar</button>`
+            modalFooterRes.innerHTML = `<button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal">Fechar</button>`
         } else {
             const modalRes = document.querySelector(`.modalbodyDel`);
             modalRes.textContent = `Falha ao Deletar Paciente!`
             const modalFooterRes = document.querySelector(`.modalfooterDel`);
-            modalFooterRes.innerHTML = `<button type="button" class="btn btn-darkblue rounded-pill" data-bs-dismiss="modal">Fechar</button>`
+            modalFooterRes.innerHTML = `<button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal">Fechar</button>`
         }
     }
 
@@ -103,12 +101,9 @@ function Inicio(props) {
         const sobrenome = document.querySelector("#novoSobrenome").value;
         const numUtente = document.querySelector("#novoNumUtente").value;
         const email = document.querySelector("#novoEmail").value;
-        const medicamento = document.querySelector("#novoMedicamento").value;
-        const horario = document.querySelector("#novoHorario").value;
-        const via = document.querySelector("#novaVia").value;
-        const dose = document.querySelector("#novaDose").value;
+        const telemovel = document.querySelector("#novoTelemovel").value;
 
-        const data = [{ nome: nomeEdit, numUtente: numeroUtenteEdit }, { nome, sobrenome, numUtente, email, medicamento, horario, via, dose }];
+        const data = [{ nome: nomeEdit, numUtente: numeroUtenteEdit }, { nome, sobrenome, numUtente, telemovel, email}];
 
         let resposta;
         try {
@@ -135,12 +130,12 @@ function Inicio(props) {
             const modalBodyRes = document.querySelector(`.modalbodyEdit`);
             modalBodyRes.textContent = `Paciente Editado com Sucesso!`;
             const modalFooterRes = document.querySelector(`.modalfooterEdit`);
-            modalFooterRes.innerHTML = `<button type="button" class="btn btn-darkblue rounded-pill" data-bs-dismiss="modal">Fechar</button>`
+            modalFooterRes.innerHTML = `<button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal">Fechar</button>`
         } else {
             const modalRes = document.querySelector(`.modalbodyEdit`);
             modalRes.textContent = `Falha ao Editar Paciente!`
             const modalFooterRes = document.querySelector(`.modalfooterEdit`);
-            modalFooterRes.innerHTML = `<button type="button" class="btn btn-darkblue rounded-pill" data-bs-dismiss="modal">Fechar</button>`
+            modalFooterRes.innerHTML = `<button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal">Fechar</button>`
         }
 
     }
@@ -148,33 +143,33 @@ function Inicio(props) {
 
     return (
         <div>
-                <h5 className="p-1">Início</h5>
-                <div className="pt-4 col-md-4">
-                    <button type="button" className="btn btn-light border-black btnInicio" data-bs-toggle="modal"
-                        data-bs-target="#modalRegPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22"
-                            height="22" fill="currentColor" className="bi bi-person-plus" viewBox="0 0 16 16">
-                            <path
-                                d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                            <path fill-rule="evenodd"
-                                d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
-                        </svg> Adicionar Paciente</button>
-                </div>
+            <h5 className="p-1">Início</h5>
+            <div className="pt-4 col-md-4">
+                <button type="button" className="btn btn-light border-black btnInicio" data-bs-toggle="modal"
+                    data-bs-target="#modalRegPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                        height="22" fill="currentColor" className="bi bi-person-plus" viewBox="0 0 16 16">
+                        <path
+                            d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                        <path fill-rule="evenodd"
+                            d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                    </svg> Adicionar Paciente</button>
+            </div>
 
-                <div className="pt-4 col-md-4">
-                    <button type="button" className="btn btn-light border-black btnInicio" data-bs-toggle="modal"
-                        data-bs-target="#modalDeletePaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
-                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
-                        </svg> Apagar Paciente</button>
-                </div>
+            <div className="pt-4 col-md-4">
+                <button type="button" className="btn btn-light border-black btnInicio" data-bs-toggle="modal"
+                    data-bs-target="#modalDeletePaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                    </svg> Apagar Paciente</button>
+            </div>
 
-                <div className="pt-4 col-md-4">
-                    <button type="button" className="btn btn-light border-black btnInicio" data-bs-toggle="modal"
-                        data-bs-target="#modalEditPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
-                            <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z" />
-                        </svg> Editar Paciente</button>
-                </div>
+            <div className="pt-4 col-md-4">
+                <button type="button" className="btn btn-light border-black btnInicio" data-bs-toggle="modal"
+                    data-bs-target="#modalEditPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                        <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z" />
+                    </svg> Editar Paciente</button>
+            </div>
 
 
 
@@ -204,20 +199,8 @@ function Inicio(props) {
                                     <input type="text" className="form-control" id="email" />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="medicamento" className="col-form-label">Medicamento</label>
-                                    <input type="text" className="form-control" id="medicamento" />
-                                </div>
-                                <div className="mb-3">
-                                    <label for="horario" className="col-form-label">Horario</label>
-                                    <input type="time" className="form-control" id="horario" />
-                                </div>
-                                <div className="mb-3">
-                                    <label for="via" className="col-form-label">Via</label>
-                                    <input type="text" className="form-control" id="via" />
-                                </div>
-                                <div className="mb-3">
-                                    <label for="dose" className="col-form-label">Dose</label>
-                                    <input type="text" className="form-control" id="dose" />
+                                    <label for="telemovel" className="col-form-label">Telemovel</label>
+                                    <input type="text" className="form-control" id="telemovel" />
                                 </div>
                             </form>
                         </div>
@@ -233,7 +216,7 @@ function Inicio(props) {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h3>Procurar Paciente</h3>
+                            <h3>Deletar Paciente</h3>
                         </div>
                         <div className="modal-body modalbodyDel">
                             <form>
@@ -285,21 +268,10 @@ function Inicio(props) {
                                     <input type="text" className="form-control" id="novoEmail" />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="medicamento" className="col-form-label">Medicamento</label>
-                                    <input type="text" className="form-control" id="novoMedicamento" />
+                                    <label for="telemovel" className="col-form-label">Telemovel</label>
+                                    <input type="text" className="form-control" id="novoTelemovel" />
                                 </div>
-                                <div className="mb-3">
-                                    <label for="horario" className="col-form-label">Horario</label>
-                                    <input type="time" className="form-control" id="novoHorario" />
-                                </div>
-                                <div className="mb-3">
-                                    <label for="via" className="col-form-label">Via</label>
-                                    <input type="text" className="form-control" id="novaVia" />
-                                </div>
-                                <div className="mb-3">
-                                    <label for="dose" className="col-form-label">Dose</label>
-                                    <input type="text" className="form-control" id="novaDose" />
-                                </div>
+                                
                             </form>
                         </div>
                         <div className="modal-footer modalfooterEdit">
