@@ -33,6 +33,11 @@ main {
     overflow-wrap: break-word;
 }
 
+.sideBar a.active{
+    background-color:#0e57c5;
+    color: white;
+}
+
 #infotext{
     width: 100%;
 }
