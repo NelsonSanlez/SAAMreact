@@ -15,7 +15,7 @@ function App() {
         <Header />
         <section className="row gap-5 p-3 pt-5 pb-5">
           <SideNav />
-          <main class="col-md-9">
+          <main className="col-md-9">
             <Rotas />
           </main>
         </section>
