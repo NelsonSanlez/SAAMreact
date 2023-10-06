@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../../images/SAAM_SistemaAjudaAdministracaoMedicamentos.png';
 import './Header.css'
 
@@ -27,7 +28,7 @@ function Header() {
                 </li>
               </ul>
               <div className="pe-2">
-                <button className="btn btn-primary" type="submit">Logout</button>
+                <Link className="btn btn-primary" to='/'>Logout</Link>
               </div>
             </div>
           </div>
