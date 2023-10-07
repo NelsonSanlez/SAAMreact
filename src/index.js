@@ -7,10 +7,54 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Inicio } from "./components/pages/Inicio/Inicio";
+import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
+import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
+import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
+import ErrorPage from './components/pages/ErrorPage/ErrorPage'
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <App />,
+        errorElement: <ErrorPage/>,
+        children: [
+            {
+                path: '/',
+                element: <p>Home</p>,
+            },
+            {
+                path: '/inicio',
+                element: <Inicio />
+            },
+            {
+                path: '/areaDeTrabalho',
+                element: <AreaDeTrabalho />
+            },
+            {
+                path: '/usuario',
+                element: <p>Usuario</p>
+            },
+            {
+                path: '/pacientes',
+                element: <p>Pacientes</p>
+            },
+            {
+                path: '/notificacoes',
+                element: <Notificacoes />
+            },
+            {
+                path: '/inserirReceita',
+                element: <InserirReceita />
+            }]
+    }
+])
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-    <App />
+    <RouterProvider router={router} />
 
 );
 
