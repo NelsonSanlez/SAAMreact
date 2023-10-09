@@ -3,6 +3,19 @@ import './AreaDeTrabalho.css';
 
 function AreaDeTrabalho() {
 
+    const [id, setId] = useState(0);
+
+    //start the patients list Fetching on the backend.
+    useEffect(() => {
+        const startPatient = async () => {
+            const listaPacientes = await pacientes();
+            if (listaPacientes) {
+                showData(listaPacientes)
+            }
+        }
+        startPatient()
+    })
+
     //This function fetch the data info of all patients in my backend endpoint /findPatients.
     const pacientes = async () => {
         try {
@@ -14,58 +27,74 @@ function AreaDeTrabalho() {
         }
     }
 
-    const [id, setId] = useState(0);
-
     //This function process the info of all patients in a table, and add this table in my html.
     async function showData(pacientes) {
         const mostrar = ["nome", "medicamento", "horario", "via", "dose", "hora"];
         const conteudo = document.querySelector("#tablebody");
+
         pacientes.forEach(paciente => {
-            const row = document.createElement("tr");
-            for (const k in paciente) {
-                if (mostrar.includes(k)) {
-                    const cell = document.createElement("td");
-                    const cellText = document.createTextNode(paciente[k])
-                    cell.appendChild(cellText);
-                    row.appendChild(cell);
-                    conteudo.appendChild(row);
+            if (paciente.status === "") {
+                const row = document.createElement("tr");
+                for (const k in paciente) {
+                    if (mostrar.includes(k)) {
+                        const cell = document.createElement("td");
+                        const cellText = document.createTextNode(paciente[k])
+                        cell.appendChild(cellText);
+                        row.appendChild(cell);
+                        conteudo.appendChild(row);
+                    }
                 }
+
+                const cellButtons = document.createElement("td");
+                let buttonOk = document.createElement("button");
+                buttonOk.name = `botaoOk`;
+                buttonOk.textContent = `Ok`;
+                buttonOk.className = `btn btn-outline-success widthControlOk`
+                buttonOk.addEventListener('click', () => handleClickOk(paciente._id, paciente.idMedicamento, paciente.idHorario));
+                cellButtons.appendChild(buttonOk)
+                row.appendChild(cellButtons)
+                conteudo.appendChild(row)
+
+                let buttonNok = document.createElement("button");
+                buttonNok.name = `botaoNok`;
+                buttonNok.textContent = `Nok`;
+                buttonNok.className = `btn btn-outline-danger widthControlNok`;
+                buttonNok.addEventListener('click', () => adicionarInformacao(paciente._id));
+                buttonNok.setAttribute("data-bs-toggle", "modal");
+                buttonNok.setAttribute("data-bs-target", "#myModal");
+                cellButtons.appendChild(buttonNok)
+                row.appendChild(cellButtons)
+                conteudo.appendChild(row)
+
             }
-
-            const cellButtons = document.createElement("td");
-            let buttonOk = document.createElement("button");
-            buttonOk.name = `botaoOk`;
-            buttonOk.textContent = `Ok`;
-            buttonOk.className = `btn btn-outline-success widthControlOk`
-            buttonOk.addEventListener('click', () => handleClickOk(paciente._id));
-            cellButtons.appendChild(buttonOk)
-            row.appendChild(cellButtons)
-            conteudo.appendChild(row)
-
-            let buttonNok = document.createElement("button");
-            buttonNok.name = `botaoNok`;
-            buttonNok.textContent = `Nok`;
-            buttonNok.className = `btn btn-outline-danger widthControlNok`;
-            buttonNok.addEventListener('click', () => adicionarInformacao(paciente._id));
-            buttonNok.setAttribute("data-bs-toggle", "modal");
-            buttonNok.setAttribute("data-bs-target", "#myModal");
-            cellButtons.appendChild(buttonNok)
-            row.appendChild(cellButtons)
-            conteudo.appendChild(row)
-
-
         });
+
         updateSize();
     }
 
     //This function handle de clicking on the Ok buttons of my table.
-    async function handleClickOk(id) {
-        const listaPacientes = await pacientes();
-        listaPacientes.forEach(elem => {
-            if (elem._id === id) {
-                console.log(elem)
+    async function handleClickOk(id, idMedicamento, idHorario) {
+        const editMedStatus = async () => {
+            try {
+                const res = await fetch(`http://localhost:5000/api/editMedStatus`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ id: id, idMedicamento: idMedicamento, idHorario: idHorario }),
+                });
+                if (res.ok) {
+                    return true
+                } else {
+                    throw new Error(`Falha ao editar Status de remédio`)
+                }
+            } catch (error) {
+                console.error(error)
             }
-        });
+        }
+        if (await editMedStatus() === true) {
+            window.location.reload()
+        }
     }
 
     //This function handle de clicking on the NOk buttons of my table.
@@ -74,9 +103,9 @@ function AreaDeTrabalho() {
     }
 
     async function addToPatient(id) {
-        console.log(id)
+
         const infotext = document.querySelector(`#infotext`).value;
-        console.log(infotext)
+
         try {
             const res = await fetch(`http://localhost:5000/api/addToPatient`, {
                 method: "PUT",
@@ -128,17 +157,6 @@ function AreaDeTrabalho() {
             });
         }
     }
-
-    //listening for the Loaded page event.
-    useEffect(() => {
-        const startPatient = async () => {
-            const listaPacientes = await pacientes();
-            if (listaPacientes) {
-                showData(listaPacientes)
-            }
-        }
-        startPatient()
-    })
 
 
     //listening for the resizing page event.
