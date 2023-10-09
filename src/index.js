@@ -13,9 +13,8 @@ import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
 import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
-// import { Pacientes } from './components/pages/Pacientes/Pacientes'
-import { Pacientes01 } from './components/pages/Pacientes/Pacientes'
-import { PacientesRender } from './components/pages/Pacientes/PacientesRender';
+import Main from './components/pages/Pacientes/Pacientes';
+
 
 const router = createBrowserRouter([
     {
@@ -41,7 +40,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/pacientes',
-                element: <Pacientes01/>
+                element: <Main/>
             },
             {
                 path: '/notificacoes',
