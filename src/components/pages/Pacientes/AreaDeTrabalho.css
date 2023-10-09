@@ -1,0 +1,27 @@
+body {
+    font-family: Inter, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #CAF0F8;
+}
+
+table button{
+    margin-left:2px;
+    width: 45%;
+}
+
+tbody {
+    display:block;
+    height:400px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout: fixed;
+    overflow-wrap: break-word;
+}
+
+/* Button */
+.btnEscuro{
+    background-color: #03045E;
+    color: #FFFFFF;
+}

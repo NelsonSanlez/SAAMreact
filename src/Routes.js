@@ -18,10 +18,12 @@ function Rotas() {
             <Route path="/pacientes" element={<Pacientes/>} />
             <Route path="/notificacoes" element={<Notificacoes />} />
             <Route path="/inserirReceita" element={<InserirReceita />}/>
+            <Route path="/receitas" element={<Receitas/>} />
             <Route path="*" element={<p>Error Page</p>} />
-            <Route path="/pacientes/:id?" element={<Receitas/>} />
+           
+            {/* <Route path="/pacientes/:id?" element={<Receitas/>} /> */}
         </Routes>
     )
 }
 
-export default Rotas
+export  {Rotas}
