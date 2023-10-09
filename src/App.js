@@ -17,7 +17,6 @@ function App() {
             <Outlet />
           </main>
         </section>
-
         <Footer />
       </div>
   );

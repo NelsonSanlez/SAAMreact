@@ -13,6 +13,9 @@ import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
 import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
+// import { Pacientes } from './components/pages/Pacientes/Pacientes'
+import { Pacientes01 } from './components/pages/Pacientes/Pacientes'
+import { PacientesRender } from './components/pages/Pacientes/PacientesRender';
 
 const router = createBrowserRouter([
     {
@@ -38,7 +41,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/pacientes',
-                element: <p>Pacientes</p>
+                element: <Pacientes01/>
             },
             {
                 path: '/notificacoes',
