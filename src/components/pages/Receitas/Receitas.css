@@ -1,0 +1,38 @@
+.card-receitas {
+    background-color: #90E0EF;
+    /* width: 380px; */
+    width: 80%;
+    height: fit-content;
+    padding: 1.3rem;
+    margin: 2rem;
+    display: grid;
+    /* float: center;
+    position:relative; */
+}
+
+#card_medicine_value,
+#card_dose_value,
+#card_schedule_value,
+#card_info_value {
+    background-color: #CAF0F8;
+    border-radius: 8px;
+    width: 100%;
+    margin: 0.26rem;
+    padding: 0.12rem;
+    padding-left: 0.3rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#card_schedule_value {
+    height: 5rem;
+}
+
+
+
+
+
+
+
+

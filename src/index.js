@@ -7,7 +7,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
@@ -27,29 +27,39 @@ const router = createBrowserRouter([
                 element: <p>Home</p>,
             },
             {
-                path: '/inicio',
+                path: 'inicio',
                 element: <Inicio />
             },
             {
-                path: '/areaDeTrabalho',
+                path: 'areaDeTrabalho',
                 element: <AreaDeTrabalho />
             },
             {
-                path: '/usuario',
+                path: 'usuario',
                 element: <p>Usuario</p>
             },
             {
                 path: '/pacientes',
                 element: <Main/>
+
+                // path: 'pacientes',
+                // element: <Outlet/>,
+                // children: [
+                //     {   
+                //         index: true,
+                //         element: <p>Pacientes</p>
+                //     },
+                //     {
+                //         path: '/pacientes/:id',
+                //         element: <InserirReceita />
+                //     }
+                // ]
             },
             {
-                path: '/notificacoes',
+                path: 'notificacoes',
                 element: <Notificacoes />
-            },
-            {
-                path: '/inserirReceita',
-                element: <InserirReceita />
-            }]
+            }
+            ]
     }
 ])
 

@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { Header } from './components/Template/Header.js';
 import { SideNav } from './components/Template/SideNav.js';
 import { Footer } from './components/Template/Footer.js';
+import {Rotas} from './Routes'
 
 
 
@@ -13,8 +14,8 @@ function App() {
         <Header />
         <section className="row gap-5 p-3 pt-5 pb-5">
           <SideNav />
-          <main class="col-md-9">
-            <Outlet />
+          <main className="col-md-9">
+            <Rotas />
           </main>
         </section>
         <Footer />
