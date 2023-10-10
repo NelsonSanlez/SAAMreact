@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { Header } from './components/Template/Header.js';
 import { SideNav } from './components/Template/SideNav.js';
 import { Footer } from './components/Template/Footer.js';
+import {Rotas} from './Routes'
 
 
 

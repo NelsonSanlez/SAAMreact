@@ -41,7 +41,7 @@ const router = createBrowserRouter([
             {
                 path: '/pacientes',
                 element: <Main/>
-
+            
                 // path: 'pacientes',
                 // element: <Outlet/>,
                 // children: [
