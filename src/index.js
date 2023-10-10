@@ -13,7 +13,7 @@ import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
 import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
-import Main from './components/pages/Pacientes/Pacientes';
+import Pacientes from './components/pages/Pacientes/Pacientes';
 
 
 const router = createBrowserRouter([
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/pacientes',
-                element: <Main/>
+                element: <Pacientes/>
             
                 // path: 'pacientes',
                 // element: <Outlet/>,
