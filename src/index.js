@@ -20,6 +20,8 @@ import Stock from './components/pages/Pacientes/Stock/Stock';
 import Historico from './components/pages/Pacientes/Historico/Historico';
 
 // import Receitas from './components/pages/Pacientes/Receitas/Receitas';  // ???????
+import Receitas from './components/pages/Pacientes/Receitas/Receitas';
+import './mysass.scss';
 
 
 const router = createBrowserRouter([
