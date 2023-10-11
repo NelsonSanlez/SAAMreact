@@ -1,0 +1,15 @@
+
+.card {
+    padding: 40px;
+    border-radius: 4rem;
+}
+
+.card-container-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards-container {
+    max-width: 1024px;
+}

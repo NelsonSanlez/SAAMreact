@@ -1,0 +1,21 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+
+$custom-colors: (
+    "darkblue": #03045E,
+    "normalblue": #0077B6
+);
+
+$theme-colors: map-merge($theme-colors , $custom-colors);
+
+
+$primary: #03045E;
+$blue: #0077B6;
+$cyan: #00B4D8;
+$info: #90E0EF;
+$light: #CAF0F8;
+$grey :#EEEEEE;
+
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
