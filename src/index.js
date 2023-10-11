@@ -19,6 +19,9 @@ import {Receitas} from './components/pages/Receitas/Receitas'
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
 import Pacientes from './components/pages/Pacientes/Pacientes';
 import Perfil from './components/pages/Pacientes/Perfil/Perfil';
+import Stock from './components/pages/Pacientes/Stock/Stock';
+import Historico from './components/pages/Pacientes/Historico/Historico';
+
 import './mysass.scss';
 
 
