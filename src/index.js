@@ -12,6 +12,7 @@ import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
 import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
+import {Receitas} from './components/pages/Receitas/Receitas'
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
 import Pacientes from './components/pages/Pacientes/Pacientes';
 
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
-        errorElement: <ErrorPage/>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
@@ -40,26 +41,18 @@ const router = createBrowserRouter([
             },
             {
                 path: '/pacientes',
-                element: <Pacientes/>
-            
-                // path: 'pacientes',
-                // element: <Outlet/>,
-                // children: [
-                //     {   
-                //         index: true,
-                //         element: <p>Pacientes</p>
-                //     },
-                //     {
-                //         path: '/pacientes/:id',
-                //         element: <InserirReceita />
-                //     }
-                // ]
+                element: <Pacientes />
+
+            },
+            {
+                path: '/pacientes/:id',
+                element: <Receitas />
             },
             {
                 path: 'notificacoes',
                 element: <Notificacoes />
             }
-            ]
+        ]
     }
 ])
 
