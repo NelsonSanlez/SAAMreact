@@ -17,6 +17,7 @@ import ErrorPage from './components/pages/ErrorPage/ErrorPage'
 import Pacientes from './components/pages/Pacientes/Pacientes';
 import Perfil from './components/pages/Pacientes/Perfil/Perfil';
 import Receitas from './components/pages/Pacientes/Receitas/Receitas';
+import './mysass.scss';
 
 
 const router = createBrowserRouter([
