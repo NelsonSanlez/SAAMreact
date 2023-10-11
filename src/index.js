@@ -7,7 +7,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Contactos from './components/pages/contactos/Contactos';
+import SobreNos from './components/pages/sobrenos/SobreNos';
+import HomePage from './components/pages/home/HomePage';
 import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
@@ -16,7 +19,6 @@ import {Receitas} from './components/pages/Receitas/Receitas'
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
 import Pacientes from './components/pages/Pacientes/Pacientes';
 import Perfil from './components/pages/Pacientes/Perfil/Perfil';
-import Receitas from './components/pages/Pacientes/Receitas/Receitas';
 import './mysass.scss';
 
 
@@ -28,7 +30,17 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <p>Home</p>,
+                element: <HomePage />,
+            },
+            {
+                path:'/contactos',
+                element: <Contactos/>,
+                
+            },
+            {
+                path:'/sobrenos',
+                element: <SobreNos/>,
+                
             },
             {
                 path: 'inicio',
@@ -45,6 +57,14 @@ const router = createBrowserRouter([
             {
                 path: '/pacientes',
                 element: <Pacientes/>
+            },
+            {
+                path: '/pacientes/receitas/:id',
+                element: <Receitas/>
+            },
+            {
+                path: '/pacientes/receitas/inserirReceitas/:id',
+                element: <InserirReceita/>
             },
             {
                 path: '/pacientes/perfil/:id',
