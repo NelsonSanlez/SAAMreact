@@ -13,7 +13,6 @@ export default function Root() {
                 <Navmenu />
             </header>
             <main>
-               
                 <Outlet/>
                 {/* <HomePage /> */}
             </main>

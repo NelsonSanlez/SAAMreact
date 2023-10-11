@@ -21,7 +21,7 @@ export default function Cards(){
                                 </div>
                             </div>
                             <div className="col-md-4">
-                                <img src={require('../../imagens/designSemNome1.png')} className="img-fluid rounded-start" alt="..."/>
+                                <img src={require('../../images/designSemNome1.png')} className="img-fluid rounded-start" alt="..."/>
                             </div>
                         </div>
                     </div>

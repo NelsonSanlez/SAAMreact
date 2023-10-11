@@ -12,7 +12,7 @@ const Navmenu = () => {
                 <nav className="navbar navbar-expand-sm">
                     <div className="container-fluid">
                         <a className="navbar-brand" href="/"><img
-                                src={require('../../imagens/SAAM_SistemaAjudaAdministracaoMedicamentos.png')} alt="S.A.A.M Logo"
+                                src={require('../../images/SAAM_SistemaAjudaAdministracaoMedicamentos.png')} alt="S.A.A.M Logo"
                                 className="logo-header"/></a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"

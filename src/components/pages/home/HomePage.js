@@ -1,25 +1,25 @@
 
-import Navbar from "../../components/navbar/Navbar";
-import Cards from "../../components/cards/Cards";
-import HeroSection from "../../components/herosection/Herosection";
-import Footer from "../../components/footer/Footer";
-import '../root/index.css';
+import Navbar from "../../navbar/Navbar";
+import Cards from "../../cards/Cards";
+import HeroSection from "../../herosection/Herosection";
+import {Footer} from "../../Template/Footer";
+import '../RootHome/index.css';
 
 const HomePage = () => {
-    return ( 
+    return (
         <div>
             <header>
-                <Navbar/>
+                <Navbar />
             </header>
             <main>
-                <HeroSection/>
-                <Cards/>
+                <HeroSection />
+                <Cards />
             </main>
             <footer>
-                <Footer/>
+                <Footer />
             </footer>
         </div>
-     );
+    );
 }
- 
+
 export default HomePage;

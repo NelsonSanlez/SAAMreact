@@ -66,7 +66,7 @@ function RegModal() {
 
     if (pass === cpass) {
 
-      const sendData = await fetch("http://localhost:3000/api/registo", { method: "POST", body: JSON.stringify(data), headers: { "content-type": "application/json" } });
+      const sendData = await fetch("http://localhost:5000/api/registo", { method: "POST", body: JSON.stringify(data), headers: { "content-type": "application/json" } });
       const response = await sendData.json();
 
     } else {

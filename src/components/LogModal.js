@@ -13,18 +13,18 @@ function LogModal() {
   const [pass, setPass] = useState('');
 
   const user = {
-    email:email,
-    password:pass
+    email: email,
+    password: pass
   };
 
   const Login = async () => {
 
     setShow(false);
 
-    const sendData = await fetch("http://localhost:3000/api/login", { method: "POST", body: JSON.stringify(user), headers: { "content-type": "application/json" } });
+    const sendData = await fetch("http://localhost:5000/api/login", { method: "POST", body: JSON.stringify(user), headers: { "content-type": "application/json" } });
     const response = await sendData.json();
 
-    if(response){
+    if (response) {
 
     }
   }
@@ -46,7 +46,7 @@ function LogModal() {
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
-                onChange={(e)=> setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 autoFocus
                 required
               />
@@ -55,12 +55,12 @@ function LogModal() {
               <Form.Label>Palavra-passe</Form.Label>
               <Form.Control
                 type="password"
-                onChange={(e)=> setPass(e.target.value)}
+                onChange={(e) => setPass(e.target.value)}
                 autoFocus
                 required
               />
             </Form.Group>
-           
+
           </Form>
         </Modal.Body>
         <Modal.Footer>
