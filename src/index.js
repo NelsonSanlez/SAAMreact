@@ -10,7 +10,6 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Contactos from './components/pages/contactos/Contactos';
 import SobreNos from './components/pages/sobrenos/SobreNos';
-import HomePage from './components/pages/home/HomePage';
 import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
@@ -21,8 +20,10 @@ import Pacientes from './components/pages/Pacientes/Pacientes';
 import Perfil from './components/pages/Pacientes/Perfil/Perfil';
 import Stock from './components/pages/Pacientes/Stock/Stock';
 import Historico from './components/pages/Pacientes/Historico/Historico';
+import MainHome from './components/pages/MainHome';
 
 import './mysass.scss';
+
 
 
 const router = createBrowserRouter([
@@ -33,15 +34,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <HomePage />,
+                element: <MainHome />,
             },
             {
-                path:'/contactos',
+                path:'contactos',
                 element: <Contactos/>,
                 
             },
             {
-                path:'/sobrenos',
+                path:'sobrenos',
                 element: <SobreNos/>,
                 
             },
@@ -58,27 +59,27 @@ const router = createBrowserRouter([
                 element: <p>Usuario</p>
             },
             {
-                path: '/pacientes',
+                path: 'pacientes',
                 element: <Pacientes/>
             },
             {
-                path: '/pacientes/receitas/:id',
+                path: 'pacientes/receitas/:id',
                 element: <Receitas/>
             },
             {
-                path: '/pacientes/receitas/inserirReceitas/:id',
+                path: 'pacientes/receitas/inserirReceitas/:id',
                 element: <InserirReceita/>
             },
             {
-                path: '/pacientes/perfil/:id',
+                path: 'pacientes/perfil/:id',
                 element: <Perfil/>
             },
             {
-                path: '/pacientes/stock/:id',
+                path: 'pacientes/stock/:id',
                 element: <Stock/>
             },
             {
-                path: '/pacientes/historico/:id',
+                path: 'pacientes/historico/:id',
                 element: <Historico/>
             },
             {
