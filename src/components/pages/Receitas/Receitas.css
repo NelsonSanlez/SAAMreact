@@ -29,6 +29,28 @@
     height: 5rem;
 }
 
+.bgCyan{
+    background-color: #CAF0F8;
+}
+
+.transparent-input {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: inherit;
+    outline: none;
+  }
+
+  .paddingInputs {
+     padding-top: 0.6rem;
+    padding-bottom: 0.005rem; 
+    padding-left: 0.3rem;
+    
+  }
+
+  .paddingBgCyan{
+    padding: 0.3rem;
+  }
 
 
 

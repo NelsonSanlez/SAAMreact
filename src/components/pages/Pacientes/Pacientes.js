@@ -32,7 +32,7 @@ function Pacientes() {
                     conteudo.appendChild(row);
                 }
             }
-
+/* 
             let linkReceita = React.createElement("Link", {to:`/inserirReceita`}, "Inserir Receita")
             const cellButtons = React.createElement("td", null, linkReceita);
             
@@ -40,7 +40,7 @@ function Pacientes() {
                 
             
              row.appendChild(cellButtons)
-             conteudo.appendChild(row)
+             conteudo.appendChild(row) */
 
         });
         updateSize();
