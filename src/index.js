@@ -7,24 +7,43 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Contactos from './components/pages/contactos/Contactos';
+import SobreNos from './components/pages/sobrenos/SobreNos';
+import HomePage from './components/pages/home/HomePage';
 import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
 import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
+import {Receitas} from './components/pages/Receitas/Receitas'
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
-import { Receitas } from './components/pages/Receitas/Receitas';
-import { Pacientes } from './components/pages/Pacientes/Pacientes';
+import Pacientes from './components/pages/Pacientes/Pacientes';
+import Perfil from './components/pages/Pacientes/Perfil/Perfil';
+import Stock from './components/pages/Pacientes/Stock/Stock';
+import Historico from './components/pages/Pacientes/Historico/Historico';
+
+import './mysass.scss';
+
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
-        errorElement: <ErrorPage/>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
-                element: <p>Home</p>,
+                element: <HomePage />,
+            },
+            {
+                path:'/contactos',
+                element: <Contactos/>,
+                
+            },
+            {
+                path:'/sobrenos',
+                element: <SobreNos/>,
+                
             },
             {
                 path: 'inicio',
@@ -39,24 +58,34 @@ const router = createBrowserRouter([
                 element: <p>Usuario</p>
             },
             {
-                path: 'pacientes',
-                element: <Outlet/>,
-                children: [
-                    {   
-                        index: true,
-                        element: <p><Pacientes/></p>
-                    },
-                    {
-                        path: '/pacientes/:id',
-                        element: <Receitas />
-                    }
-                ]
+                path: '/pacientes',
+                element: <Pacientes/>
+            },
+            {
+                path: '/pacientes/receitas/:id',
+                element: <Receitas/>
+            },
+            {
+                path: '/pacientes/receitas/inserirReceitas/:id',
+                element: <InserirReceita/>
+            },
+            {
+                path: '/pacientes/perfil/:id',
+                element: <Perfil/>
+            },
+            {
+                path: '/pacientes/stock/:id',
+                element: <Stock/>
+            },
+            {
+                path: '/pacientes/historico/:id',
+                element: <Historico/>
             },
             {
                 path: 'notificacoes',
                 element: <Notificacoes />
             }
-            ]
+        ]
     }
 ])
 
