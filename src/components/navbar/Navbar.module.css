@@ -1,0 +1,23 @@
+.homeHeader {
+    position: fixed;
+    z-index: 10;
+    background: white;
+    width: 100%;
+}
+
+.logo-header {
+    max-width: 7rem;
+}
+
+.buttons-header button {
+    width: 6rem;
+    margin: 0 0.5rem 0 0.5rem;
+}
+
+.darkblue{
+    background-color:#03045E;
+    color: white} 
+    
+.normalblue{
+    background-color: #0077B6;
+    color: white} 

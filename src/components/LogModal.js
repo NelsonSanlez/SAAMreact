@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import styles from './navbar/Navbar.module.css'
 
 function LogModal() {
   const [show, setShow] = useState(false);
@@ -31,7 +32,7 @@ function LogModal() {
 
   return (
     <>
-      <Button variant="normalblue rounded-pill shadow" onClick={handleShow}>
+      <Button variant="rounded-pill shadow" className={styles.normalblue} onClick={handleShow}>
         Entrar
       </Button>
 

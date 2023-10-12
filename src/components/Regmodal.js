@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import styles from './navbar/Navbar.module.css'
 
 function RegModal() {
   const [show, setShow] = useState(false);
@@ -78,7 +79,7 @@ function RegModal() {
 
   return (
     <>
-      <Button variant="darkblue rounded-pill shadow" onClick={handleShow}>
+      <Button variant="rounded-pill shadow" className={styles.darkblue} onClick={handleShow}>
         Registar
       </Button>
 

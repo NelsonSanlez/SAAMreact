@@ -22,7 +22,7 @@ import Stock from './components/pages/Pacientes/Stock/Stock';
 import Historico from './components/pages/Pacientes/Historico/Historico';
 import MainHome from './components/pages/MainHome';
 
-import './mysass.scss';
+
 
 
 

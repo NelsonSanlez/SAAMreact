@@ -1,12 +1,12 @@
 import RegModal from '../Regmodal';
 import LogModal from '../LogModal';
-import './Navbar.css';
+import styles from './Navbar.module.css';
 import Nav from 'react-bootstrap/Nav';
 
 
 const Navmenu = () => {
     return (
-        <div className="container">
+        <header className={`container-fluid ${styles.homeHeader}`}>
         <div className="row">
             <div className="col">
                 <nav className="navbar navbar-expand-sm">
@@ -40,7 +40,7 @@ const Navmenu = () => {
                 </nav>
             </div>
         </div>
-    </div>
+    </header>
     );
 }
  
