@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../images/SAAM_SistemaAjudaAdministracaoMedicamentos.png';
 import styles from './Header.module.css'
 
-function Header() {
+function Header({handleLogin}) {
   
     return (
   
@@ -28,7 +28,7 @@ function Header() {
                 </li>
               </ul>
               <div className="pe-3">
-                <Link className="btn btn-primary" to='/'>Logout</Link>
+                <Link className="btn btn-primary" onClick={()=>handleLogin(0)}>Logout</Link>
               </div>
             </div>
           </div>

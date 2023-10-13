@@ -3,10 +3,11 @@ import Navbar from "../../navbar/Navbar";
 import {Footer} from "../../Template/Footer";
 
 
-const HomePage = () => {
+const HomePage = ({handleLogin}) => {
+    handleLogin(0)
     return (
         <div>
-            <Navbar />
+            <Navbar handleLogin={handleLogin}/>
             <Outlet/>
             <footer>
                 <Footer />

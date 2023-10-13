@@ -4,7 +4,7 @@ import styles from './Navbar.module.css';
 import Nav from 'react-bootstrap/Nav';
 
 
-const Navmenu = () => {
+const Navmenu = ({handleLogin}) => {
     return (
         <header className={`container-fluid ${styles.homeHeader}`}>
         <div className="row">
@@ -32,7 +32,7 @@ const Navmenu = () => {
                                 </li>
                             </ul>
                             <div className="buttons-header">
-                                <LogModal/>
+                                <LogModal handleLogin={handleLogin}/>
                                 <RegModal/>
                             </div>
                         </div>

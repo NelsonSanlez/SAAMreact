@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import styles from './navbar/Navbar.module.css'
+import { useNavigate } from 'react-router';
 
-function LogModal() {
+function LogModal({handleLogin}) {
   const [show, setShow] = useState(false);
+  
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,16 +20,21 @@ function LogModal() {
     password: pass
   };
 
+  const navigate = useNavigate();
+
   const Login = async () => {
 
     setShow(false);
 
     const sendData = await fetch("http://localhost:5000/api/login", { method: "POST", body: JSON.stringify(user), headers: { "content-type": "application/json" } });
     const response = await sendData.json();
-
-    if (response) {
-
+    if(response[0]){
+      handleLogin(1)
+      navigate('/inicio')
+    }else{
+      navigate('/')
     }
+    
   }
 
   return (
