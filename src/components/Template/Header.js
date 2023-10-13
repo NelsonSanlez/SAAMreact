@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import logo from '../../images/SAAM_SistemaAjudaAdministracaoMedicamentos.png';
-import './Header.css'
+import styles from './Header.module.css'
 
 function Header() {
   
     return (
   
-      <header className="row navbarRound">
+      <header className={`row ${styles.navbarRound}`}>
         <nav className="navbar navbar-expand-md">
           <div className="container-fluid">
             <img src={logo} />
@@ -27,7 +27,7 @@ function Header() {
                   <a className="nav-link" href="#">Lar Bragança</a>
                 </li>
               </ul>
-              <div className="pe-2">
+              <div className="pe-3">
                 <Link className="btn btn-primary" to='/'>Logout</Link>
               </div>
             </div>

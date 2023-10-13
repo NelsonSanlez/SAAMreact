@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import Cards from "../../cards/Cards";
 import HeroSection from "../../herosection/Herosection";
 
@@ -6,9 +6,9 @@ import HeroSection from "../../herosection/Herosection";
 
 export default function MainHome() {
     return (
-        <div>
+        <main className={styles.homeMain}>
             <HeroSection />
             <Cards />
-        </div>
+        </main>
     )
 }
