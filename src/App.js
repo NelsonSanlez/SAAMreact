@@ -10,7 +10,7 @@ function App() {
   const [login, setLogin] = useState({status:1});
 
   if (login.status === 0) {
-    return (<HomePage setLogin={setLogin}/>)
+    return (<HomePage/>)
     
   } else {
     return (
