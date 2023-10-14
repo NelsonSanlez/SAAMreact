@@ -7,11 +7,11 @@ import { Footer } from './components/Template/Footer.js';
 import HomePage from './components/pages/home/HomePage'
 
 function App() {
-  const [login, setLogin] = useState({status:1});
+  const [login, setLogin] = useState({ status: 0 });
 
   if (login.status === 0) {
-    return (<HomePage setLogin={setLogin}/>)
-    
+    return (<HomePage setLogin={setLogin} />)
+
   } else {
     return (
       <div className="App container-fluid">
@@ -22,7 +22,10 @@ function App() {
             <Outlet />
           </main>
         </section>
-        <Footer />
+        <footer>
+
+          <Footer />
+        </footer>
       </div>
     );
   }
