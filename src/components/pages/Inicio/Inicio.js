@@ -1,7 +1,14 @@
 import styles from './Inicio.module.css';
+import { LoginContext } from "../../../context/LoginContext";
+import { useContext, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 function Inicio(props) {
+    //controle de validação de Login
+    const { login } = useContext(LoginContext);
+    const navigate = useNavigate();
+    
 
     //This function send the information of the new patient to the backend.
     const addPaciente = async (data) => {
@@ -32,9 +39,9 @@ function Inicio(props) {
         const numUtente = document.querySelector("#numUtente").value;
         const email = document.querySelector("#email").value;
         const telemovel = document.querySelector("#telemovel").value;
-        
 
-        const data = { nome, sobrenome, numUtente, telemovel, email};
+
+        const data = { nome, sobrenome, numUtente, telemovel, email };
 
         const res = await addPaciente(data);
 
@@ -103,7 +110,7 @@ function Inicio(props) {
         const email = document.querySelector("#novoEmail").value;
         const telemovel = document.querySelector("#novoTelemovel").value;
 
-        const data = [{ nome: nomeEdit, numUtente: numeroUtenteEdit }, { nome, sobrenome, numUtente, telemovel, email}];
+        const data = [{ nome: nomeEdit, numUtente: numeroUtenteEdit }, { nome, sobrenome, numUtente, telemovel, email }];
 
         let resposta;
         try {
@@ -140,6 +147,11 @@ function Inicio(props) {
 
     }
 
+    useEffect(() => {
+        if (!login.email || !login.password) {
+            navigate('/errorPage')
+        }
+    })
 
     return (
         <div>
@@ -271,7 +283,7 @@ function Inicio(props) {
                                     <label for="telemovel" className="col-form-label">Telemovel</label>
                                     <input type="text" className="form-control" id="novoTelemovel" />
                                 </div>
-                                
+
                             </form>
                         </div>
                         <div className="modal-footer modalfooterEdit">
@@ -282,6 +294,7 @@ function Inicio(props) {
             </div>
         </div>
     )
+
 }
 
 

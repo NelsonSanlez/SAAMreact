@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
+import {LoginContext} from './context/LoginContext';
 import styles from './App.module.css';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Header } from './components/Template/Header.js';
@@ -8,30 +9,25 @@ import HomePage from './components/pages/home/HomePage'
 
 
 function App() {
-  const [login, setLogin] = useState(0);
-  const navigate = useNavigate();
+  const {login, checkLogin} = useContext(LoginContext);
   
-  const handleLogin = (value) => {
-    setLogin(value)
-  }
-
   useEffect(() => {
     if (login === 1) {
       setTimeout(() => {
-        setLogin(0)
+        checkLogin()
       }, 5 * 60000)
     }
   }, [login])
 
 
-  if (login === 0) {
-    return (<HomePage handleLogin={handleLogin} />)
+  if (!login.email || !login.password) {
+    return (<HomePage />)
 
   } else {
   
     return (
       <div className="App container-fluid">
-        <Header handleLogin={handleLogin}/>
+        <Header />
         <section className="row gap-5 p-3 pt-5 pb-5">
           <SideNav />
           <main className={`col-md-9 ${styles.workArea}`}>
