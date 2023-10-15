@@ -12,7 +12,7 @@ function App() {
   const {login, checkLogin} = useContext(LoginContext);
   
   useEffect(() => {
-    if (login === 1) {
+    if (login.email && login.password) {
       setTimeout(() => {
         checkLogin()
       }, 5 * 60000)
@@ -34,7 +34,10 @@ function App() {
             <Outlet />
           </main>
         </section>
-        <Footer />
+        <footer>
+
+          <Footer />
+        </footer>
       </div>
     );
   }

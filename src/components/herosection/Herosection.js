@@ -1,6 +1,6 @@
 import './herosection.css';
 
-export default function HeroSection(){
+export default function HeroSection() {
     return (
         <section className="heroSection">
             <div className="heroImage">
@@ -8,14 +8,21 @@ export default function HeroSection(){
             </div>
             <div className="container">
                 <div className="row circlesContainer">
-                    <div className="circle">
-                        <h3>Simples e intuitivo</h3>
+                    <div className="col d-flex justify-content-center">
+                        <div className="circle">
+                            <h3>Simples e intuitivo</h3>
+                        </div>
                     </div>
-                    <div className="circle">
-                        <h3>Gestão de Stock</h3>
+                    <div className="col d-flex justify-content-center">
+                        <div className="circle">
+                            <h3>Gestão de Stock</h3>
+                        </div>
                     </div>
-                    <div className="circle">
-                        <h3>Automatize o processo</h3>
+                    <div className="col d-flex justify-content-center">
+                        <div className="circle">
+                            <h3>Automatize o processo</h3>
+                        </div>
+
                     </div>
 
                 </div>
