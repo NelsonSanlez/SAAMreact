@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import "./Receitas.css";
 import MaisInfo from "./ModalMaisInfo";
+
+
 
 async function OneRecipe(id) {
   try {
@@ -16,6 +18,7 @@ async function OneRecipe(id) {
 function Receitas(props) {
   const [recipeData, setRecipeData] = useState({});
   const [horarios, setHorarios] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     async function fetchData() {

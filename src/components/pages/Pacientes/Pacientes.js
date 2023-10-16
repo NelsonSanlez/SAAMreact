@@ -271,7 +271,7 @@ function ShowData() {
           <div className="col nome-utente">{paciente.nome}</div>
           <div className="col num-utente">Nº: {paciente.numUtente}</div>
           <div className="col-8 btns-utentes">
-            <a className="col-2 btn btn-utentes" href={`listaReceitas.html?name=${paciente.nome}`}>Receitas</a>
+            <a className="col-2 btn btn-utentes" href={`/pacientes/receitas/${paciente.numUtente}`}>Receitas</a>
             <a className="col-2 btn btn-utentes" href='/pacientes/perfil/:id'>Perfil</a>
             <a className="col-2 btn btn-utentes" href="/pacientes/stock/:id">Stock</a>
             <a className="col-2 btn btn-utentes" href="/pacientes/historico/:id">Histórico</a>
