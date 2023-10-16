@@ -8,87 +8,81 @@ function MaisInfo(props){
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
+    const handleEdit = () => setShowModal(false);
+    const handleDelete = () => setShowModal(false);
 
+    // link (get) -> passagem de parametros, é necessário usar userparams para os receber
+    // pode usar action ou load para fazer o pedido
 
+    // chegamos por loader ao carregar a pagina a primeira vez
+    // se vier por post vem relacionado com o action
 
+    // "retirar" a info das props para usar no modal
+    const receita=props.propValue;
+    //const horarios=props.propValue.Horarios;
+    console.log(receita)
+    //console.log(horarios)
 
 return(
-    <div id="card_info_value">
+    <div className="m-0 p-0 " id="card_info_value">
     <div>
-      <Button variant="light" onClick={handleShow}>
+      <Button variant="light" className="btn-m w-100 h-100 bgCyan border-0 btn-hover-effect rounded-4" onClick={handleShow}>
         Ver receita
       </Button>
 
-      <Modal show={showModal} onHide={handleClose} backdrop="static" keyboard={false} size="xl">
-        <Modal.Header closeButton>
-          <Modal.Title>Receita</Modal.Title>
+      <Modal  show={showModal} onHide={handleClose} backdrop="static" keyboard={false} size="xl">
+        <Modal.Header className="bgBlue" closeButton>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="bgBlue">
+          <div className="container">
           <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>Nome</Form.Label>
-              <Form.Control type="text" value="Por aqui os valores" disabled />
+            <Form.Group className="mb-3 row" >
+              <Form.Label className="col-1 pt-2">Nome</Form.Label>
+              <Form.Control className="col rounded-4 " type="text" value={receita.Nome} style={{backgroundColor: '#CAF0F8'}} disabled />
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Dose</Form.Label>
-              <Form.Control type="text" value="Por aqui os valores" disabled />
+            <Form.Group className="mb-3 row" >
+              <Form.Label className="col-1 pt-2">Dose</Form.Label>
+              <Form.Control className="col rounded-4" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.Dose} disabled />
+            </Form.Group>
+            <Form.Group className="mb-3 row" >
+              <Form.Label className="col-1 pt-2">Validade</Form.Label>
+              <Form.Control className="col rounded-4" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.Validade} disabled />
+            </Form.Group>
+            <Form.Group className="mb-3 row" >
+              <Form.Label className="col-1 pt-2">Data Início</Form.Label>
+              <Form.Control className="col rounded-4" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.Data_início} disabled />
+            </Form.Group>
+            <Form.Group className="mb-3 row" >
+              <Form.Label className="col-1 pt-2">Data Fim</Form.Label>
+              <Form.Control className="col rounded-4" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.Data_fim} disabled />
+            </Form.Group>
+            <Form.Group className="mb-3 row" >
+              <Form.Label className="col-1 pt-2">Stock</Form.Label>
+              <Form.Control className="col rounded-4" style={{backgroundColor: '#CAF0F8'}} type="number" value={receita.Stock} disabled />
+            </Form.Group>
+            <Form.Group className="mb-3 row" >
+              <Form.Label className="col-1 pt-2">Horários</Form.Label>
+              {/* <div className="col ps-0">
+              {horarios.map((horario, index) => (
+                <div key={index}>
+                  <Form.Control  className="transparent-input col rounded-0" style={{backgroundColor: '#CAF0F8'}}  type="text"  value={horario}  disabled      readOnly
+                  />
+                </div>
+              ))}
+              </div> */}
             </Form.Group>
           </Form>
+          </div>  
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="light" onClick={handleClose}>Editar</Button>
-          <Button variant="light">Eliminar</Button>
+        <Modal.Footer className="bgBlue justify-content-center">
+          <Button variant="light" className="rounded-4 bgCyan border-0" onClick={handleEdit}>Editar</Button>
+          <Button variant="danger" className="rounded-4  border-0" onClick={handleDelete}>Eliminar</Button>
+          
         </Modal.Footer>
       </Modal>
     </div>
 
-        {/* <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content bgCyan ">
-            <div class="modal-header ">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body ">
-            
-                <div class="row ">
-                <p class="mb-3 mt-2 col-1">Nome</p>
-                <div class="col-10"> <input type="text" class="form-control rounded-5 " id="Nome" name="Nome" value="Por aqui os valores" aria-label="Disabled input example" disabled readonly /> </div>
-                </div>
-                <div class="row">
-                <p class="mb-3 mt-2 col-1">Dose</p>
-                <div class="col-10"> <input type="text" class="form-control rounded-5" id="Dose" name="Dose" value="Por aqui os valores" aria-label="Disabled input example" disabled readonly/> </div>
-                </div>
-                <div class="row">
-                <p class="mb-4 mt-2 col-1">Horários</p>
-                <div class="col-10" id="HorarioContainer"> <input type="text" class="form-control rounded-5"  id="Horários" name="Horários"  value="Por aqui os valores" aria-label="Disabled input example" disabled readonly/> </div>
-                </div> 
-
-                <div class="row mt-3">
-                <p class="mb-3 mt-2 col-1">Validade</p>
-                <div class="col-10"> <input type="text" class="form-control rounded-5" id="Validade" name="Validade" value="Por aqui os valores" aria-label="Disabled input example" disabled readonly/> </div>
-                </div>
-                <div class="row">
-                <p class="mb-3 mt-2 col-1">Data Fim</p>
-                <div class="col-10"> <input type="text" class="form-control rounded-5" id="Data_fim" name="DataFim" value="Por aqui os valores" aria-label="Disabled input example" disabled readonly/> </div>
-                </div>
-                <div class="row">
-                <p class="mb-3 mt-2 col-1 pe-0">Data Início</p>
-                <div class="col-10"> <input type="text" class="form-control rounded-5" id="Data_início" name="DataInicio" value="Por aqui os valores" aria-label="Disabled input example" disabled readonly/> </div>
-                </div>
-                <div class="row">
-                <p class="mb-3 mt-2 col-1">Stock</p>
-                <div class="col-10"> <input type="text" class="form-control rounded-5" id="Stock" name="Stock" value="Por aqui os valores" aria-label="Disabled input example" disabled readonly/> </div>
-                </div>
-                
-            
-            </div>
-            <div class="modal-footer mx-auto mb-3">
-                <button type="button" class="btn  bg-white border-black rounded-5 " data-bs-dismiss="modal">Editar</button>
-                <button type="button" class="btn  bg-white border-black rounded-5">Eliminar</button>
-            </div>
-            </div>
-        </div>
-        </div> */}
+        
 
 </div>
 )

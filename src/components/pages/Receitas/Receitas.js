@@ -34,11 +34,11 @@ function Receitas(props) {
 
   return (
     <div>
-      <div className="row row_medicine_cards">
-        <div className="card row card-receitas  col-lg col-md-4 col-sm-12 col-12 ">
-          <div className="row  ">
+      <div className="row  ">
+        <div className="card row card-receitas  col-lg col-md-4 col-sm-12  ">
+          <div className="row  m-0">
             <div className="col-5 d-flex align-items-center m-0">Nome</div>
-            <div className="col  paddingBgCyan  ">
+            <div className="col  paddingBgCyan m-0 ">
                 <div className="bgCyan rounded-4 ">
                     <div className=" paddingInputs ">
                         <p >{recipeData.Nome} </p>
@@ -73,9 +73,9 @@ function Receitas(props) {
           </div>
           <div className="row">
             <div className="col"></div>
-            <div className="col" id="card_info_value">
-             {/*  Mais informações */}
-                <MaisInfo/>
+            <div className="col-7 m-0 p-0 " >
+             
+                <MaisInfo propValue={recipeData}/>
             </div>
           </div>
         </div>

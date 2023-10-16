@@ -14,13 +14,14 @@ import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
 import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
-import {Receitas} from './components/pages/Receitas/Receitas'
+//import {Receitas} from './components/pages/Receitas/Receitas'
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
 import Pacientes from './components/pages/Pacientes/Pacientes';
 import Perfil from './components/pages/Pacientes/Perfil/Perfil';
 import Stock from './components/pages/Pacientes/Stock/Stock';
 import Historico from './components/pages/Pacientes/Historico/Historico';
 import MainHome from './components/pages/MainHome';
+import TabelaReceitas from './components/pages/Receitas/TabelaReceitas';
 
 
 
@@ -64,7 +65,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'pacientes/receitas/:id',
-                element: <Receitas/>
+                element: <TabelaReceitas/>
             },
             {
                 path: 'pacientes/receitas/inserirReceitas/:id',
