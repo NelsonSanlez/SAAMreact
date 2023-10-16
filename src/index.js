@@ -8,6 +8,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { LoginProvider } from './context/LoginContext';
+
 import Contactos from './components/pages/contactos/Contactos';
 import SobreNos from './components/pages/sobrenos/SobreNos';
 import { Inicio } from "./components/pages/Inicio/Inicio";
@@ -22,10 +24,6 @@ import Stock from './components/pages/Pacientes/Stock/Stock';
 import Historico from './components/pages/Pacientes/Historico/Historico';
 import MainHome from './components/pages/MainHome';
 import TabelaReceitas from './components/pages/Receitas/TabelaReceitas';
-
-
-
-
 
 const router = createBrowserRouter([
     {
@@ -93,9 +91,9 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
-    <RouterProvider router={router} />
-
+    <LoginProvider>
+        <RouterProvider router={router} />
+    </LoginProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

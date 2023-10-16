@@ -1,75 +1,102 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './AreaDeTrabalho.css';
+import { Link } from "react-router-dom";
+import { LoginContext } from "../../../context/LoginContext";
+import { useNavigate } from 'react-router-dom';
 
 function AreaDeTrabalho() {
 
-    const [id, setId] = useState(0);
+    const [data, setData] = useState([]);
+    const [btnOk, setBtnOk] = useState("");
+    const [btnNok, setBtnNok] = useState("");
+    const [texto, setTexto] = useState('');
+    const [modal, setModal] = useState(0);
+    const [id, setId] = useState({});
+    //controle de validação de Login
+    const { login } = useContext(LoginContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!login.email || !login.password) {
+            navigate('/errorPage')
+        }
+    })
+
 
     //start the patients list Fetching on the backend.
     useEffect(() => {
-        const startPatient = async () => {
-            const listaPacientes = await pacientes();
-            if (listaPacientes) {
-                showData(listaPacientes)
-            }
-        }
-        startPatient()
-    })
+        if (!data[0]) {
+            const startPatient = async () => {
+                try {
+                    const res = await fetch(`http://localhost:5000/findPatients`)
+                    const pacientes = await res.json()
+                    setData(pacientes)
 
-    //This function fetch the data info of all patients in my backend endpoint /findPatients.
-    const pacientes = async () => {
-        try {
-            const res = await fetch(`http://localhost:5000/findPatients`)
-            const data = await res.json()
-            return data
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
-    //This function process the info of all patients in a table, and add this table in my html.
-    async function showData(pacientes) {
-        const mostrar = ["nome", "medicamento", "horario", "via", "dose", "hora"];
-        const conteudo = document.querySelector("#tablebody");
-
-        pacientes.forEach(paciente => {
-            if (paciente.status === "") {
-                const row = document.createElement("tr");
-                for (const k in paciente) {
-                    if (mostrar.includes(k)) {
-                        const cell = document.createElement("td");
-                        const cellText = document.createTextNode(paciente[k])
-                        cell.appendChild(cellText);
-                        row.appendChild(cell);
-                        conteudo.appendChild(row);
-                    }
+                } catch (error) {
+                    console.error(error)
                 }
-
-                const cellButtons = document.createElement("td");
-                let buttonOk = document.createElement("button");
-                buttonOk.name = `botaoOk`;
-                buttonOk.textContent = `Ok`;
-                buttonOk.className = `btn btn-outline-success widthControlOk`
-                buttonOk.addEventListener('click', () => handleClickOk(paciente._id, paciente.idMedicamento, paciente.idHorario));
-                cellButtons.appendChild(buttonOk)
-                row.appendChild(cellButtons)
-                conteudo.appendChild(row)
-
-                let buttonNok = document.createElement("button");
-                buttonNok.name = `botaoNok`;
-                buttonNok.textContent = `Nok`;
-                buttonNok.className = `btn btn-outline-danger widthControlNok`;
-                buttonNok.addEventListener('click', () => adicionarInformacao(paciente._id));
-                buttonNok.setAttribute("data-bs-toggle", "modal");
-                buttonNok.setAttribute("data-bs-target", "#myModal");
-                cellButtons.appendChild(buttonNok)
-                row.appendChild(cellButtons)
-                conteudo.appendChild(row)
-
             }
-        });
+            startPatient()
+        }
+        setTexto('')
+    }, [data])
+    useEffect(() => {
 
-        updateSize();
+        const handleResize = () => {
+            if (window.innerWidth > 768) {
+                setBtnOk('Ok')
+                setBtnNok('Nok')
+            } else {
+                setBtnOk(<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                </svg>)
+                setBtnNok(<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                </svg>)
+            }
+        }
+        window.addEventListener('resize', handleResize)
+
+
+        if (modal !== 0) {
+            const restartModal = () => {
+                setModal(0)
+            }
+            window.addEventListener(`click`, restartModal)
+        }
+    }, [modal])
+
+
+    function TbodyPatients() {
+
+        return (
+            <tbody>
+                {data.map((paciente, i) => {
+                    if (paciente.status === "") {
+                        return (
+                            <tr key={i}>
+                                <td>{paciente.nome}</td>
+                                <td>{paciente.medicamento}</td>
+                                <td>{paciente.horario}</td>
+                                <td>{paciente.via}</td>
+                                <td>{paciente.dose}</td>
+                                <td>
+                                    <Link><button className="btn btn-outline-success"
+                                        onClick={() => handleClickOk(paciente._id, paciente.idMedicamento, paciente.idHorario)}>
+                                        {btnOk || 'Ok'}
+                                    </button></Link>
+                                    <Link><button className="btn btn-outline-danger"
+                                        onClick={() => setId({ id: paciente._id, idMedicamento: paciente.idMedicamento, idHorario: paciente.idHorario })} data-bs-toggle='modal' data-bs-target="#myModal" >
+                                        {btnNok || 'Nok'}
+                                    </button></Link>
+                                </td>
+                            </tr>
+                        )
+                    }
+                })
+                }
+            </tbody>
+        )
     }
 
     //This function handle de clicking on the Ok buttons of my table.
@@ -92,19 +119,12 @@ function AreaDeTrabalho() {
                 console.error(error)
             }
         }
-        if (await editMedStatus() === true) {
-            window.location.reload()
+        if (editMedStatus() === true) {
+            setData([])
         }
     }
 
-    //This function handle de clicking on the NOk buttons of my table.
-    function adicionarInformacao(id) {
-        setId(id)
-    }
-
-    async function addToPatient(id) {
-
-        const infotext = document.querySelector(`#infotext`).value;
+    async function handleClickNok() {
 
         try {
             const res = await fetch(`http://localhost:5000/api/addToPatient`, {
@@ -112,57 +132,64 @@ function AreaDeTrabalho() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ id: id, infotext: infotext }),
+                body: JSON.stringify({ id: id.id, infotext: texto, idMedicamento: id.idMedicamento, idHorario: id.idHorario }),
             });
 
             if (res.ok) {
-                const modalBodyRes = document.querySelector(`.mobalBodyaddtoPacient`);
-                modalBodyRes.textContent = `Mensagem adicionada com Sucesso!`;
-                const modalFooterRes = document.querySelector(`.mobalFooteraddtoPacient`);
-                modalFooterRes.innerHTML = `<button type="button" class="btn btn-darkblue rounded-pill" data-bs-dismiss="modal">Fechar</button>`
+                setModal(1)
             } else {
-                const modalRes = document.querySelector(`.mobalBodyaddtoPacient`);
-                modalRes.textContent = `Falha ao adicionar mensagem!`
-                const modalFooterRes = document.querySelector(`.mobalFooteraddtoPacient`);
-                modalFooterRes.innerHTML = `<button type="button" class="btn btn-darkblue rounded-pill" data-bs-dismiss="modal">Fechar</button>`
+                setModal(2)
             }
         } catch (error) {
             console.error(error)
         }
+        setData([])
     }
 
-    //This function change the content of buttons OK and Nok when the window change sizes.
-    function updateSize() {
-        //Taking all Ok and Nok buttons.
-        const btnOk = document.querySelectorAll(`.widthControlOk`);
-        const btnNok = document.querySelectorAll(`.widthControlNok`);
+    const handleChangeText = (event) => {
+        setTexto(event.target.value);
+        console.log(texto)
+    }
 
-        if (window.innerWidth <= 768) {
-            btnOk.forEach(element => {
-                element.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-            </svg>`
-            });
-            btnNok.forEach(elem => {
-                elem.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-        </svg>`
-            });
+    function handleModal() {
+
+        if (modal === 0) {
+            return (
+                <div>
+                    <div className="modal-body mobalBodyaddtoPacient">
+                        <textarea id="infotext" type='text' value={texto} onChange={handleChangeText} rows="5"></textarea>
+                    </div>
+
+                    <div className="modal-footer mobalFooteraddtoPacient">
+                        <button type="button" onClick={() => handleClickNok()} className="btn btn-success sendButton">Enviar</button>
+                        <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            )
+        } else if (modal === 1) {
+            return (
+                <div>
+                    <div className="modal-body mobalBodyaddtoPacient">
+                        <p>Mensagem adicionada com Sucesso!</p>
+                    </div>
+                    <div className="modal-footer mobalFooteraddtoPacient">
+                        <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            )
         } else {
-            btnOk.forEach(element => {
-                element.innerHTML = "Ok"
-            });
-            btnNok.forEach(elem => {
-                elem.innerHTML = "Nok"
-            });
+            return (
+                <div>
+                    <div className="modal-body mobalBodyaddtoPacient">
+                        <p>Falha ao adicionar mensagem!</p>
+                    </div>
+                    <div className="modal-footer mobalFooteraddtoPacient">
+                        <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            )
         }
     }
-
-
-    //listening for the resizing page event.
-    window.addEventListener("resize", event => {
-        updateSize();
-    });
 
     return (
 
@@ -179,8 +206,7 @@ function AreaDeTrabalho() {
                         <th>Administação</th>
                     </tr>
                 </thead>
-                <tbody id="tablebody">
-                </tbody>
+                <TbodyPatients />
             </table>
 
 
@@ -191,17 +217,7 @@ function AreaDeTrabalho() {
                         <div className="modal-header">
                             <h4 className="modal-title">Informaçao sobre a Administração</h4>
                         </div>
-
-                        {/* <!-- Modal Body --> */}
-                        <div className="modal-body mobalBodyaddtoPacient">
-                            <textarea id="infotext" placeholder="Medicação não foi administrada?" rows="5"></textarea>
-                        </div>
-
-                        {/* <!-- Modal Footer --> */}
-                        <div className="modal-footer mobalFooteraddtoPacient">
-                            <button type="button" onClick={async () => await addToPatient(id)} className="btn btn-success sendButton">Enviar</button>
-                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-                        </div>
+                        {handleModal()}
                     </div>
                 </div>
             </div>

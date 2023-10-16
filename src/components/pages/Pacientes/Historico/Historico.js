@@ -1,18 +1,26 @@
-
-
-import React from 'react';
-
-
-function Historico () {
+import { LoginContext } from "../../../../context/LoginContext";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 
-return(
-<div>Hello!! Aqui o HISTORICO!!!</div>
+function Historico() {
+    //controle de validação de Login
+    const { login } = useContext(LoginContext);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!login.email || !login.password) {
+            navigate('/errorPage')
+        }
+    })
+
+
+    return (
+        <div>Hello!! Aqui o HISTORICO!!!</div>
 
 
 
-)
+    )
 
 
 }

@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useContext } from 'react';
+import {LoginContext} from './context/LoginContext';
 import styles from './App.module.css';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Header } from './components/Template/Header.js';
 import { SideNav } from './components/Template/SideNav.js';
 import { Footer } from './components/Template/Footer.js';
 import HomePage from './components/pages/home/HomePage'
 
-function App() {
-  const [login, setLogin] = useState({ status: 0 });
 
-  if (login.status === 0) {
-    return (<HomePage setLogin={setLogin} />)
+function App() {
+  const {login, checkLogin} = useContext(LoginContext);
+  
+  useEffect(() => {
+    if (login.email && login.password) {
+      setTimeout(() => {
+        checkLogin()
+      }, 5 * 60000)
+    }
+  }, [login])
+
+
+  if (!login.email || !login.password) {
+    return (<HomePage />)
 
   } else {
+  
     return (
       <div className="App container-fluid">
         <Header />

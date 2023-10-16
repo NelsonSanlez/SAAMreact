@@ -1,6 +1,7 @@
+import { LoginContext } from "../../../context/LoginContext";
+import { useNavigate } from 'react-router-dom';
 
-
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './Pacientes.css'
 
 function ShowData() {
@@ -282,6 +283,14 @@ function ShowData() {
 }
 
 function Pacientes() {
+  //controle de validação de Login
+  const { login } = useContext(LoginContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!login.email || !login.password) {
+      navigate('/errorPage')
+    }
+  })
   return (
     <div>
       <ShowData />
