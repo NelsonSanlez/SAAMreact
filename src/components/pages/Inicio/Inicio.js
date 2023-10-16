@@ -8,7 +8,11 @@ function Inicio(props) {
     //controle de validação de Login
     const { login } = useContext(LoginContext);
     const navigate = useNavigate();
-    
+    useEffect(() => {
+        if (!login.email || !login.password) {
+            navigate('/')
+        }
+    })
 
     //This function send the information of the new patient to the backend.
     const addPaciente = async (data) => {
@@ -147,11 +151,7 @@ function Inicio(props) {
 
     }
 
-    useEffect(() => {
-        if (!login.email || !login.password) {
-            navigate('/errorPage')
-        }
-    })
+    
 
     return (
         <div>

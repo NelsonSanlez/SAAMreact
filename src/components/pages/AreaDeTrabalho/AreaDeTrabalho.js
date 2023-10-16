@@ -18,7 +18,7 @@ function AreaDeTrabalho() {
 
     useEffect(() => {
         if (!login.email || !login.password) {
-            navigate('/errorPage')
+            navigate('/')
         }
     })
 

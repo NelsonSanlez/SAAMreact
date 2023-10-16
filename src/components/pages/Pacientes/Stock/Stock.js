@@ -9,7 +9,7 @@ function Stock() {
     const navigate = useNavigate();
     useEffect(() => {
         if (!login.email || !login.password) {
-            navigate('/errorPage')
+            navigate('/')
         }
     })
 
