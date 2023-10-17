@@ -17,7 +17,7 @@ function App() {
         checkLogin()
       }, 5 * 60000)
     }
-  }, [login])
+  })
 
 
   if (!login.email || !login.password) {
@@ -26,6 +26,7 @@ function App() {
   } else {
   
     return (
+      
       <div className="App container-fluid">
         <Header />
         <section className="row gap-5 p-3 pt-5 pb-5">

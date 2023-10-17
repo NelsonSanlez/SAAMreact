@@ -1,16 +1,20 @@
 import styles from './Inicio.module.css';
 import { LoginContext } from "../../../context/LoginContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
 function Inicio(props) {
     //controle de validação de Login
     const { login } = useContext(LoginContext);
+    const [loading, setLoading] = useState(true);
+
     const navigate = useNavigate();
     useEffect(() => {
         if (!login.email || !login.password) {
             navigate('/')
+        }else {
+            setLoading(false)
         }
     })
 
@@ -151,9 +155,10 @@ function Inicio(props) {
 
     }
 
-    
-
-    return (
+    if(loading){
+        return (<h1>Carregando ...</h1>)
+    }else {
+        return (
         <div>
             <h5 className="p-1">Início</h5>
             <div className="pt-4 col-md-4">
@@ -294,6 +299,7 @@ function Inicio(props) {
             </div>
         </div>
     )
+    }
 
 }
 

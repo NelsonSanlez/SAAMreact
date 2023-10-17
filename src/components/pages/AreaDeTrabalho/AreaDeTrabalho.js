@@ -14,11 +14,14 @@ function AreaDeTrabalho() {
     const [id, setId] = useState({});
     //controle de validação de Login
     const { login } = useContext(LoginContext);
-    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
+    const navigate = useNavigate();
     useEffect(() => {
         if (!login.email || !login.password) {
             navigate('/')
+        } else {
+            setLoading(false)
         }
     })
 
@@ -191,38 +194,43 @@ function AreaDeTrabalho() {
         }
     }
 
-    return (
+    if (loading) {
+        return (
+            <h1>Carregando ...</h1>
+        )
+    } else {
+        return (
+            <div>
+                <h5 className="p-1">Área de Trabalho</h5>
+                <table className="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Medicamento</th>
+                            <th>Hora</th>
+                            <th>Via</th>
+                            <th>Dose</th>
+                            <th>Administação</th>
+                        </tr>
+                    </thead>
+                    <TbodyPatients />
+                </table>
 
-        <div>
-            <h5 className="p-1">Área de Trabalho</h5>
-            <table className="table table-responsive table-striped">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Medicamento</th>
-                        <th>Hora</th>
-                        <th>Via</th>
-                        <th>Dose</th>
-                        <th>Administação</th>
-                    </tr>
-                </thead>
-                <TbodyPatients />
-            </table>
 
-
-            <div className="modal fade" id="myModal">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        {/* <!-- Modal Header --> */}
-                        <div className="modal-header">
-                            <h4 className="modal-title">Informaçao sobre a Administração</h4>
+                <div className="modal fade" id="myModal">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            {/* <!-- Modal Header --> */}
+                            <div className="modal-header">
+                                <h4 className="modal-title">Informaçao sobre a Administração</h4>
+                            </div>
+                            {handleModal()}
                         </div>
-                        {handleModal()}
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export { AreaDeTrabalho }

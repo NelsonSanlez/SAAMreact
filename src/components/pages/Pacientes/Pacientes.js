@@ -291,6 +291,7 @@ function Pacientes() {
       navigate('/')
     }
   })
+  
   return (
     <div>
       <ShowData />
