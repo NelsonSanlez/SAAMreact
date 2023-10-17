@@ -1,22 +1,17 @@
 import styles from './Inicio.module.css';
 import { LoginContext } from "../../../context/LoginContext";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { Navigate } from 'react-router-dom';
 
 
 function Inicio(props) {
     //controle de validação de Login
     const { login } = useContext(LoginContext);
-    const [loading, setLoading] = useState(true);
-
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (!login.email || !login.password) {
-            navigate('/')
-        }else {
-            setLoading(false)
-        }
-    })
+    
+    if (!login.email || !login.password) {
+            return (<Navigate to='/'/>)
+    }
+    
 
     //This function send the information of the new patient to the backend.
     const addPaciente = async (data) => {
@@ -155,10 +150,8 @@ function Inicio(props) {
 
     }
 
-    if(loading){
-        return (<h1>Carregando ...</h1>)
-    }else {
-        return (
+    
+    return (
         <div>
             <h5 className="p-1">Início</h5>
             <div className="pt-4 col-md-4">
@@ -299,7 +292,7 @@ function Inicio(props) {
             </div>
         </div>
     )
-    }
+    
 
 }
 

@@ -1,17 +1,15 @@
 import { LoginContext } from "../../../context/LoginContext";
-import React, { useContext, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Navigate } from 'react-router-dom';
 
 
 function Notificacoes() {
     //controle de validação de Login
     const { login } = useContext(LoginContext);
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (!login.email || !login.password) {
-            navigate('/')
-        }
-    })
+
+    if (!login.email || !login.password) {
+        return (<Navigate to='/' />)
+    }
     return (
         <div>
             <h5 class="p-1">Configuração de Alertas</h5>

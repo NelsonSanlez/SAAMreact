@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import './AreaDeTrabalho.css';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { LoginContext } from "../../../context/LoginContext";
-import { useNavigate } from 'react-router-dom';
+
 
 function AreaDeTrabalho() {
 
@@ -12,19 +12,6 @@ function AreaDeTrabalho() {
     const [texto, setTexto] = useState('');
     const [modal, setModal] = useState(0);
     const [id, setId] = useState({});
-    //controle de validação de Login
-    const { login } = useContext(LoginContext);
-    const [loading, setLoading] = useState(true);
-
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (!login.email || !login.password) {
-            navigate('/')
-        } else {
-            setLoading(false)
-        }
-    })
-
 
     //start the patients list Fetching on the backend.
     useEffect(() => {
@@ -43,6 +30,7 @@ function AreaDeTrabalho() {
         }
         setTexto('')
     }, [data])
+
     useEffect(() => {
 
         const handleResize = () => {
@@ -69,6 +57,12 @@ function AreaDeTrabalho() {
         }
     }, [modal])
 
+    //controle de validação de Login
+    const { login } = useContext(LoginContext);
+
+    if (!login.email || !login.password) {
+        return (<Navigate to='/' />)
+    }
 
     function TbodyPatients() {
 
@@ -194,43 +188,39 @@ function AreaDeTrabalho() {
         }
     }
 
-    if (loading) {
-        return (
-            <h1>Carregando ...</h1>
-        )
-    } else {
-        return (
-            <div>
-                <h5 className="p-1">Área de Trabalho</h5>
-                <table className="table table-responsive table-striped">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Medicamento</th>
-                            <th>Hora</th>
-                            <th>Via</th>
-                            <th>Dose</th>
-                            <th>Administação</th>
-                        </tr>
-                    </thead>
-                    <TbodyPatients />
-                </table>
+
+    return (
+        <div>
+            <h5 className="p-1">Área de Trabalho</h5>
+            <table className="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Medicamento</th>
+                        <th>Hora</th>
+                        <th>Via</th>
+                        <th>Dose</th>
+                        <th>Administação</th>
+                    </tr>
+                </thead>
+                <TbodyPatients />
+            </table>
 
 
-                <div className="modal fade" id="myModal">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            {/* <!-- Modal Header --> */}
-                            <div className="modal-header">
-                                <h4 className="modal-title">Informaçao sobre a Administração</h4>
-                            </div>
-                            {handleModal()}
+            <div className="modal fade" id="myModal">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        {/* <!-- Modal Header --> */}
+                        <div className="modal-header">
+                            <h4 className="modal-title">Informaçao sobre a Administração</h4>
                         </div>
+                        {handleModal()}
                     </div>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
+
 
 export { AreaDeTrabalho }

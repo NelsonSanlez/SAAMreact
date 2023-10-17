@@ -1,18 +1,16 @@
 import { LoginContext } from "../../../../context/LoginContext";
-import React, { useContext, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useContext} from "react";
+import { Navigate } from 'react-router-dom';
 
 
 
 function Historico() {
     //controle de validação de Login
     const { login } = useContext(LoginContext);
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (!login.email || !login.password) {
-            navigate('/')
-        }
-    })
+    
+    if (!login.email || !login.password) {
+        return (<Navigate to='/'/>)
+    }
 
 
     return (

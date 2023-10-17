@@ -16,7 +16,7 @@ import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
 import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
-//import {Receitas} from './components/pages/Receitas/Receitas'
+
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
 import Pacientes from './components/pages/Pacientes/Pacientes';
 import Perfil from './components/pages/Pacientes/Perfil/Perfil';
