@@ -286,7 +286,7 @@ function Pacientes() {
   //controle de validação de Login
   const { login } = useContext(LoginContext);
     
-  if (!login.email || !login.password) {
+  if (!login.id || !login.status) {
       return (<Navigate to='/'/>)
   }
   
