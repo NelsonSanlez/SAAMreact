@@ -12,15 +12,15 @@ function App() {
   const {login, checkLogin} = useContext(LoginContext);
   
   useEffect(() => {
-    if (login.email && login.password) {
+    if (login.id && login.status) {
       setTimeout(() => {
-        checkLogin()
-      }, 5 * 60000)
+        checkLogin({})
+      }, (5 * 60 * 60 * 1000))
     }
   })
 
 
-  if (!login.email || !login.password) {
+  if (!login.id || !login.status) {
     return (<HomePage />)
 
   } else {

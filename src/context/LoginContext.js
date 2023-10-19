@@ -7,11 +7,11 @@ export const LoginProvider = ({children}) => {
     const [login, setLogin] = useState({});
 
 
-    const checkLogin = ({email, password})=>{
-        if(!email || !password){
+    const checkLogin = ({id, status})=>{
+        if(!id || !status){
             setLogin({});
         }else{
-            setLogin({email, password})
+            setLogin({id, status})
         }
     }
 

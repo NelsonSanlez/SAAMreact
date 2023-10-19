@@ -9,7 +9,7 @@ export default function MainHome() {
     const { login, checkLogin } = useContext(LoginContext);
 
     useEffect(() => {
-        if (login.email && login.password) {
+        if (login.id && login.status) {
             checkLogin({})
         }
     })

@@ -31,7 +31,7 @@ function LogModal() {
     const sendData = await fetch("http://localhost:5000/api/login", { method: "POST", body: JSON.stringify(user), headers: { "content-type": "application/json" } });
     const response = await sendData.json();
     if(response[0]){
-      checkLogin(user)
+      checkLogin({id: response[0]._id, status:response[0].status })
       navigate('/inicio')
     }else{
       navigate('/')
