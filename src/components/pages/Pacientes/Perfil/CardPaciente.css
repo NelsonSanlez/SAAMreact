@@ -1,0 +1,39 @@
+
+.allCards{
+    justify-content: space-evenly;
+}
+
+.cardPacienteDiv{
+    display: flex;
+    width:max-content;
+    justify-self:space-evenly;
+    margin: 1rem;
+}
+
+.cardPaciente{
+    display: flex;
+    width:max-content;
+    width: 300px;
+    justify-self:space-evenly;
+    margin: 1rem;
+    box-shadow: 14px 12px 15rem #CAF0F8;
+    border-radius: 0.5rem;
+}
+
+.cardPacienteHead{
+background-color: #90E0EF;
+}
+
+.cardPacienteBody{
+    background-color: #CAF0F8;
+
+}
+
+.cardPacienteFooter{
+background-color: #90E0EF;
+
+}
+
+
+
+

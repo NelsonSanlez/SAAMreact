@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
+import './index.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -16,14 +16,15 @@ import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
 import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
-
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
-import Pacientes from './components/pages/Pacientes/Pacientes';
-import Perfil from './components/pages/Pacientes/Perfil/Perfil';
+import {Pacientes} from './components/pages/Pacientes/Pacientes';
+import { DetailAllPacientes } from './components/pages/Pacientes/DetailAllPacientes/DetailAllPacientes';
+import {Perfil} from './components/pages/Pacientes/Perfil/Perfil';
 import Stock from './components/pages/Pacientes/Stock/Stock';
 import Historico from './components/pages/Pacientes/Historico/Historico';
 import MainHome from './components/pages/MainHome';
 import MasonryComponent from './components/pages/Receitas/TabelaReceitas';
+import {Historico} from './components/pages/Pacientes/Historico/Historico';
 
 const router = createBrowserRouter([
     {
@@ -68,17 +69,21 @@ const router = createBrowserRouter([
             {
                 path: 'pacientes/receitas/inserirReceitas/:id',
                 element: <InserirReceita/>
+            },  
+            {
+                path: '/pacientes/detailAllPacientes',
+                element: <DetailAllPacientes/>
             },
             {
-                path: 'pacientes/perfil/:id',
+                path: `/pacientes/perfil/:id`,
                 element: <Perfil/>
             },
             {
-                path: 'pacientes/stock/:id',
+                path: `/pacientes/stock/:id`,
                 element: <Stock/>
             },
             {
-                path: 'pacientes/historico/:id',
+                path: `/pacientes/historico/:id`,
                 element: <Historico/>
             },
             {

@@ -1,280 +1,388 @@
 import { LoginContext } from "../../../context/LoginContext";
 import { Link, Navigate} from 'react-router-dom';
-
 import React, { useContext, useEffect, useState } from "react";
-import './Pacientes.css'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Pacientes.css';
 
-function ShowData() {
-  const pacientes = [{
-    "_id": {
-      "$oid": "6511a70a88e392a4f6ddf847"
+// ONLY 3 PATIENTS
+// const pacientes = [
+//   {
+//     _id: {
+//       $oid: '6511a70a88e392a4f6ddf847',
+//     },
+//     nome: 'Jane Atkinson',
+//     numUtente: '9758246',
+//     telemovel: '922777888',
+//     email: 'janeatkinson@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '15:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//     mensagens: [
+//       {
+//         mensagem: 'asdjasdk askjfbkjs kadhndfsk ksdfjnsdfk',
+//       },
+//       { mensagem: 'dsfdnsd dfdfskjngdfogs dfgsndgfs sfgkjnsdfgk' },
+//     ],
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b31088e392a4f6ddf849',
+//     },
+//     nome: 'Alice Vila',
+//     numUtente: '7346158',
+//     telemovel: '918452456',
+//     email: 'alicevila@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '10:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b34088e392a4f6ddf84a',
+//     },
+//     nome: 'Bob Construtor',
+//     numUtente: '6427815',
+//     telemovel: '962458735',
+//     email: 'bobconstrutor@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '11:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+// ];
+
+// WITH 18 PATIENTS
+const pacientes = [
+  {
+    _id: {
+      $oid: '6511a70a88e392a4f6ddf847',
     },
-    "nome": "Jane Atkinson",
-    "numUtente": "9758246",
-    "medicamento": "Ben-u-ron",
-    "hora": "15:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Jane Atkinson',
+    numUtente: '9758246',
+    telemovel: '922777888',
+    email: 'janeatkinson@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '15:00',
+    via: 'Oral',
+    dose: '1 Comp',
+    mensagens: [
+      {
+        mensagem: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis',
+      },
+      { mensagem: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis' },
+      {
+        mensagem: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis',
+      }
+    ],
   },
   {
-    "_id": {
-      "$oid": "6511b31088e392a4f6ddf849"
+    _id: {
+      $oid: '6511b31088e392a4f6ddf849',
     },
-    "nome": "Alice Vila",
-    "numUtente": "7346158",
-    "medicamento": "Ben-u-ron",
-    "hora": "10:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Alice Vilar',
+    numUtente: '6587498',
+    telemovel: '918452456',
+    email: 'alicevila@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '10:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
   {
-    "_id": {
-      "$oid": "6511b34088e392a4f6ddf84a"
+    _id: {
+      $oid: '6511b31088e392a4f6ddf849',
     },
-    "nome": "Bob Construtor",
-    "numUtente": "6427815",
-    "medicamento": "Ben-u-ron",
-    "hora": "11:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Alice Vilar',
+    numUtente: '6587422',
+    medicamento: 'Ben-u-ron',
+    hora: '10:00',
+    via: 'Oral',
+    dose: '1 Comp',
+    mensagens: [
+      {
+        mensagem: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis',
+      },
+    ]
   },
   {
-    "_id": {
-      "$oid": "6511b36c88e392a4f6ddf84b"
+    _id: {
+      $oid: '6511b31088e392a4f6ddf849',
     },
-    "nome": "Carlos Almeida",
-    "numUtente": "6977356",
-    "medicamento": "Ben-u-ron",
-    "hora": "12:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Alice Vila',
+    numUtente: '6587421',
+    telemovel: '918452456',
+    email: 'alicevila@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '10:00',
+    via: 'Oral',
+    dose: '1 Comp',
+    mensagens: [
+      {
+        mensagem: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex officia voluptate. Culpa nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis',
+      },
+      {
+        mensagem: 'Lorem ipsum dolor eprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi animcupidatat excepteur officia. Reprehenderit aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis',
+      },
+      {
+        mensagem: 'Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis',
+      },
+      {
+        mensagem: 'Nisi animcupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis',
+      },
+    ]
   },
   {
-    "_id": {
-      "$oid": "6511b38688e392a4f6ddf84c"
+    _id: {
+      $oid: '6511a70a88e392a4f6ddf847',
     },
-    "nome": "Jane Atkinson",
-    "numUtente": "9758246",
-    "medicamento": "Ben-u-ron",
-    "hora": "15:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Jane Atkinson',
+    numUtente: '9758246',
+    telemovel: '922777888',
+    email: 'janeatkinson@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '15:00',
+    via: 'Oral',
+    dose: '1 Comp',
+    mensagens: [
+      {
+        mensagem: 'asdjasdk askjfbkjs kadhndfsk ksdfjnsdfk',
+      },
+      { mensagem: 'dsfdnsd dfdfskjngdfogs dfgsndgfs sfgkjnsdfgk' },
+    ],
   },
   {
-    "_id": {
-      "$oid": "6511b3a188e392a4f6ddf84d"
+    _id: {
+      $oid: '6511b31088e392a4f6ddf849',
     },
-    "nome": "Rob Timber",
-    "numUtente": "3197764",
-    "medicamento": "Ben-u-ron",
-    "hora": "09:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Alice Vilar',
+    numUtente: '6587498',
+    telemovel: '918452456',
+    email: 'alicevila@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '10:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
   {
-    "_id": {
-      "$oid": "6511b3b588e392a4f6ddf84e"
+    _id: {
+      $oid: '6511b31088e392a4f6ddf849',
     },
-    "nome": "Marisa Contreras",
-    "numUtente": "3025410",
-    "medicamento": "Ben-u-ron",
-    "hora": "19:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Alice Vilar',
+    numUtente: '6587422',
+    medicamento: 'Ben-u-ron',
+    hora: '10:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
   {
-    "_id": {
-      "$oid": "6511b3c588e392a4f6ddf84f"
+    _id: {
+      $oid: '6511b31088e392a4f6ddf849',
     },
-    "nome": "Maria Almeida",
-    "numUtente": "2309001",
-    "medicamento": "Ben-u-ron",
-    "hora": "19:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Alice Vila',
+    numUtente: '6587421',
+    telemovel: '918452456',
+    email: 'alicevila@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '10:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
   {
-    "_id": {
-      "$oid": "6511b3d988e392a4f6ddf850"
+    _id: {
+      $oid: '6511a70a88e392a4f6ddf847',
     },
-    "nome": "Euclides Silva",
-    "numUtente": "3460219",
-    "medicamento": "Ben-u-ron",
-    "hora": "19:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Jane Atkinson',
+    numUtente: '7346158',
+    telemovel: '922777888',
+    email: 'janeatkinson@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '15:00',
+    via: 'Oral',
+    dose: '1 Comp',
+    mensagens: [
+      {
+        mensagem: 'asdjasdk askjfbkjs kadhndfsk ksdfjnsdfk',
+      },
+      { mensagem: 'dsfdnsd dfdfskjngdfogs dfgsndgfs sfgkjnsdfgk' },
+    ],
   },
   {
-    "_id": {
-      "$oid": "6511b3eb88e392a4f6ddf851"
+    _id: {
+      $oid: '6511b34088e392a4f6ddf84a',
     },
-    "nome": "Josefa Fonseca",
-    "numUtente": "5849672",
-    "medicamento": "Ben-u-ron",
-    "hora": "19:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Bob Eletricista',
+    numUtente: '6427815',
+    telemovel: '962458735',
+    email: 'bobconstrutor@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '11:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
   {
-    "_id": {
-      "$oid": "6511b3fb88e392a4f6ddf852"
+    _id: {
+      $oid: '6511a70a88e392a4f6ddf847',
     },
-    "nome": "Roberto Melindes",
-    "numUtente": "3498762",
-    "medicamento": "Ben-u-ron",
-    "hora": "19:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Jane Atkinson',
+    numUtente: '9758246',
+    telemovel: '922777888',
+    email: 'janeatkinson@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '15:00',
+    via: 'Oral',
+    dose: '1 Comp',
+    mensagens: [
+      {
+        mensagem: 'asdjasdk askjfbkjs kadhndfsk ksdfjnsdfk',
+      },
+      { mensagem: 'dsfdnsd dfdfskjngdfogs dfgsndgfs sfgkjnsdfgk' },
+    ],
   },
   {
-    "_id": {
-      "$oid": "6511b40d88e392a4f6ddf853"
+    _id: {
+      $oid: '6511a70a88e392a4f6ddf847',
     },
-    "nome": "Irina Gonzaga",
-    "numUtente": "1245786",
-    "medicamento": "Ben-u-ron",
-    "hora": "19:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Jane Atkinson',
+    numUtente: '9758246',
+    telemovel: '922777888',
+    email: 'janeatkinson@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '15:00',
+    via: 'Oral',
+    dose: '1 Comp',
+    mensagens: [
+      {
+        mensagem: 'asdjasdk askjfbkjs kadhndfsk ksdfjnsdfk',
+      },
+      { mensagem: 'dsfdnsd dfdfskjngdfogs dfgsndgfs sfgkjnsdfgk' },
+    ],
   },
   {
-    "_id": {
-      "$oid": "6511b42988e392a4f6ddf854"
+    _id: {
+      $oid: '6511b31088e392a4f6ddf849',
     },
-    "nome": "Elisa Dupont",
-    "numUtente": "3496857",
-    "medicamento": "Ben-u-ron",
-    "hora": "19:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Alice Vila',
+    numUtente: '3265197',
+    telemovel: '918452456',
+    email: '',
+    medicamento: 'Ben-u-ron',
+    hora: '10:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
   {
-    "_id": {
-      "$oid": "6511b43c88e392a4f6ddf855"
+    _id: {
+      $oid: '6511b31088e392a4f6ddf849',
     },
-    "nome": "Gertrudes Alipio",
-    "numUtente": "1542716",
-    "medicamento": "Ben-u-ron",
-    "hora": "19:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Alice Vila',
+    numUtente: '7346158',
+    telemovel: '918452456',
+    email: 'alicevila@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '10:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
   {
-    "_id": {
-      "$oid": "6511b44e88e392a4f6ddf856"
+    _id: {
+      $oid: '6511b34088e392a4f6ddf84a',
     },
-    "nome": "Bruno Matias",
-    "numUtente": "4857362",
-    "medicamento": "Ben-u-ron",
-    "hora": "19:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Bob Construtor',
+    numUtente: '6427815',
+    telemovel: '962458735',
+    email: 'bobconstrutor@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '11:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
   {
-    "_id": {
-      "$oid": "6511b45e88e392a4f6ddf857"
+    _id: {
+      $oid: '6511b31088e392a4f6ddf849',
     },
-    "nome": "Saul Mentes",
-    "numUtente": "3562541",
-    "medicamento": "Ben-u-ron",
-    "hora": "19:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Alice Vila',
+    numUtente: '3741516',
+    telemovel: '918452456',
+    email: 'alicevila@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '10:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
   {
-    "_id": {
-      "$oid": "6512bdda88e392a4f6ddf859"
+    _id: {
+      $oid: '6511b34088e392a4f6ddf84a',
     },
-    "nome": "Elias Nantes",
-    "numUtente": "6258156",
-    "medicamento": "Paracetamol",
-    "hora": "18:00",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Bob Condutor',
+    numUtente: '6427815',
+    telemovel: '962458735',
+    email: 'bobconstrutor@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '11:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
   {
-    "_id": {
-      "$oid": "6512be4c88e392a4f6ddf85a"
+    _id: {
+      $oid: '6511b34088e392a4f6ddf84a',
     },
-    "nome": "Júlia Rayan",
-    "numUtente": "2457813",
-    "medicamento": "Doxilamina",
-    "hora": "21:30",
-    "via": "Oral",
-    "dose": "1 Comp"
+    nome: 'Bob Astronauta',
+    numUtente: '6427815',
+    telemovel: '962458735',
+    email: 'bobconstrutor@gmail.com',
+    medicamento: 'Ben-u-ron',
+    hora: '11:00',
+    via: 'Oral',
+    dose: '1 Comp',
   },
-  {
-    "_id": {
-      "$oid": "6512eb169e6f4a33b2b72a0a"
-    },
-    "nome": "Many Meds",
-    "numUtente": "9758246",
-    "receita_01": {
-      "medicamento": "Metadona",
-      "hora": "20:00",
-      "via": "Oral",
-      "dose": "1 Comp"
-    },
-    "receita_02": {
-      "medicamento": "Doxilamina",
-      "hora": "21:00",
-      "via": "Oral",
-      "dose": "1 Comp"
-    },
-    "receita_03": {
-      "medicamento": "ParacetamolPlus",
-      "hora": "21:00",
-      "via": "Oral",
-      "dose": "1 Comp"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "651402d743a2e2309b5bf63f"
-    },
-    "nome": "Emil Strafino",
-    "numUtente": "6854320",
-    "medicamento": "Doxilamina",
-    "hora": "22:00",
-    "via": "Oral",
-    "dose": "1 Comp"
-  },
-  {
-    "_id": {
-      "$oid": "65143559ffa0672e35403fa6"
-    },
-    "nome": "Luísa Filipino",
-    "sobrenome": "Filipino",
-    "numUtente": "5242531",
-    "email": "luisa.filipino@gmail.com",
-    "medicamento": "Paracetamol",
-    "horario": "08:45",
-    "via": "oral",
-    "dose": "1 comp"
-  },
-  {
-    "_id": {
-      "$oid": "6520951f227704ff2d8bcf9c"
-    },
-    "nome": "Túlio Ermita",
-    "numUtente": "2548963",
-    "medicamento": "Doxilamina",
-    "hora": "21:30",
-    "via": "Oral",
-    "dose": "1 Comp"
-  }]
+];
+
+let oPaciente;
+
+function ShowData({ setOPaciente }) {
 
   return (
     <div id="Conteudo">
       {pacientes.map((paciente) => (
-        <div key={paciente.numUtente} className="container-fluid row utente_lista">
+        <div
+          key={paciente.numUtente}
+          className="container-fluid row utente_lista"
+        >
           <div className="col nome-utente">{paciente.nome}</div>
-          <div className="col num-utente">Nº: {paciente.numUtente}</div>
+          <div
+            className="col num-utente"
+            id={paciente.numUtente}
+          >
+            Nº: {paciente.numUtente}
+          </div>
           <div className="col-8 btns-utentes">
-            <Link className="col-2 btn btn-utentes" to={`/pacientes/receitas/${paciente.numUtente}`}>Receitas</Link>
-            <Link className="col-2 btn btn-utentes" to='/pacientes/perfil/:id'>Perfil</Link>
-            <Link className="col-2 btn btn-utentes" to="/pacientes/stock/:id">Stock</Link>
-            <Link className="col-2 btn btn-utentes" to="/pacientes/historico/:id">Histórico</Link>
+            <a
+              className="col-2 btn btn-utentes"
+              href={`listaReceitas.html?name=${paciente.nome}`}
+            >
+              Receitas
+            </a>
+            <Link
+              className="col-2 btn btn-utentes"
+              to={`/pacientes/perfil/${paciente.numUtente}`}
+            >
+              Perfil
+            </Link>
+            <Link
+              className="col-2 btn btn-utentes"
+              to={`/pacientes/stock/${paciente.numUtente}`}
+            >
+              Stock
+            </Link>
+            <Link
+              className="col-2 btn btn-utentes"
+              to={`/pacientes/historico/${paciente.numUtente}`}
+            >
+              Histórico
+            </Link>
           </div>
         </div>
       ))}
@@ -292,9 +400,9 @@ function Pacientes() {
   
   return (
     <div>
-      <ShowData />
+      <ShowData setOPaciente={0} />
     </div>
   );
 }
 
-export default Pacientes;
+export { Pacientes, pacientes, oPaciente };
