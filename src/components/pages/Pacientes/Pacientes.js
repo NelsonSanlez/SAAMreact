@@ -1,8 +1,6 @@
 import { LoginContext } from "../../../context/LoginContext";
 import { Link, Navigate} from 'react-router-dom';
-import React, { useContext, useEffect, useState } from "react";
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
 import './Pacientes.css';
 
 // ONLY 3 PATIENTS

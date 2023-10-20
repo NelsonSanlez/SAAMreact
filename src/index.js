@@ -21,10 +21,9 @@ import {Pacientes} from './components/pages/Pacientes/Pacientes';
 import { DetailAllPacientes } from './components/pages/Pacientes/DetailAllPacientes/DetailAllPacientes';
 import {Perfil} from './components/pages/Pacientes/Perfil/Perfil';
 import Stock from './components/pages/Pacientes/Stock/Stock';
-import Historico from './components/pages/Pacientes/Historico/Historico';
+import {Historico} from './components/pages/Pacientes/Historico/Historico';
 import MainHome from './components/pages/MainHome';
 import MasonryComponent from './components/pages/Receitas/TabelaReceitas';
-import {Historico} from './components/pages/Pacientes/Historico/Historico';
 
 const router = createBrowserRouter([
     {
