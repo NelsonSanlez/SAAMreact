@@ -7,8 +7,8 @@ import { Navigate } from 'react-router-dom';
 function Inicio(props) {
     //controle de validação de Login
     const { login } = useContext(LoginContext);
-    const [paciente, setPaciente] = useState({ nome: "", sobrenome: "", numUtente: 0, telemovel: 0, email: "" });
-    const [enfermeiro, setEnfermeiro] = useState({ nome: "", sobrenome: "", cedulaPro: 0, telemovel: 0, email: "" });
+    const [paciente, setPaciente] = useState({ nome: "", sobrenome: "", numUtente: 0, telemovel: 0, email: "", [(login.status === "admin")? 'idEntidade' : 'idNurse']: login.id});
+    const [enfermeiro, setEnfermeiro] = useState({ nome: "", sobrenome: "", cedulaPro: 0, telemovel: 0, email: "", idEntidade: login.id });
     const [modal, setModal] = useState(0)
     const [verifyNumUtente, setVerifyNumUtente] = useState(false)
     const [verifyCedulaPro, setVerifyCedulaPro] = useState(false)
@@ -18,8 +18,6 @@ function Inicio(props) {
         if (modal !== 0) {
             const restartModal = () => {
                 setModal(0);
-                setPaciente({ nome: "", sobrenome: "", numUtente: 0, telemovel: 0, email: "" });
-                setEnfermeiro({ nome: "", sobrenome: "", cedulaPro: 0, telemovel: 0, email: "" });
             }
             window.addEventListener(`click`, restartModal)
         }
@@ -76,6 +74,7 @@ function Inicio(props) {
             }
         }
         verification()
+        setPaciente({ nome: "", sobrenome: "", numUtente: 0, telemovel: 0, email: "" });
     }
 
     const addEnfermeiro = async () => {
@@ -121,6 +120,7 @@ function Inicio(props) {
             }
         }
         verification()
+        setEnfermeiro({ nome: "", sobrenome: "", cedulaPro: 0, telemovel: 0, email: "", idEntidade: login.id });
     }
 
     function handleAddPaciente(event) {
@@ -132,6 +132,7 @@ function Inicio(props) {
     }
 
     function handleModalAddPaciente() {
+        
         if (modal === 0) {
             return (
                 <div>
@@ -344,7 +345,7 @@ function Inicio(props) {
                             d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
                     </svg> Adicionar Paciente</button>
             </div>
-
+            {login.status === "admin"? 
             <div className="pt-4 col-md-4">
                 <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
                     data-bs-target="#modalRegEnfermeiro"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-clipboard2-check" viewBox="0 0 16 16">
@@ -353,6 +354,8 @@ function Inicio(props) {
                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3Z" />
                     </svg> Adicionar Enfermeiro</button>
             </div>
+            :
+            <div></div>}
 {/* 
             <div className="pt-4 col-md-4">
                 <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
