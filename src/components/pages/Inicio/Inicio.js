@@ -7,8 +7,9 @@ import { Navigate } from 'react-router-dom';
 function Inicio(props) {
     //controle de validação de Login
     const { login } = useContext(LoginContext);
-    const [paciente, setPaciente] = useState({ nome: "", sobrenome: "", numUtente: 0, telemovel: 0, email: "", [(login.status === "admin")? 'idEntidade' : 'idNurse']: login.id});
-    const [enfermeiro, setEnfermeiro] = useState({ nome: "", sobrenome: "", cedulaPro: 0, telemovel: 0, email: "", idEntidade: login.id });
+    const [paciente, setPaciente] = useState({ nome: "", sobrenome: "", numUtente: "", telemovel: 0, email: "", [(login.status === "admin") ? 'idEntidade' : 'idNurse']: login.id });
+    const [enfermeiro, setEnfermeiro] = useState({ nome: "", sobrenome: "", cedulaPro: "", telemovel: 0, email: "", idEntidade: login.id });
+    const [atribuicao, setAtribuicao] = useState({ numUtente: "", cedulaPro: "" });
     const [modal, setModal] = useState(0)
     const [verifyNumUtente, setVerifyNumUtente] = useState(false)
     const [verifyCedulaPro, setVerifyCedulaPro] = useState(false)
@@ -123,16 +124,42 @@ function Inicio(props) {
         setEnfermeiro({ nome: "", sobrenome: "", cedulaPro: 0, telemovel: 0, email: "", idEntidade: login.id });
     }
 
+    const addAtribuicao = async () => {
+        try {
+            const res = await fetch(`http://localhost:5000/api/atribuirPaciente`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(atribuicao),
+            });
+
+            if (res.ok) {
+                setModal(1)
+            } else {
+                setModal(2)
+            }
+
+        } catch (error) {
+            console.error(error)
+        }
+        setAtribuicao({ numUtente: "", cedulaPro: "" });
+    }
+
     function handleAddPaciente(event) {
         setPaciente({ ...paciente, [event.target.name]: event.target.value })
     }
-    
+
     function handleAddEnfermeiro(event) {
         setEnfermeiro({ ...enfermeiro, [event.target.name]: event.target.value })
     }
 
+    function handleAtribuicao(event) {
+        setAtribuicao({ ...atribuicao, [event.target.name]: event.target.value })
+    }
+
     function handleModalAddPaciente() {
-        
+
         if (modal === 0) {
             return (
                 <div>
@@ -187,7 +214,7 @@ function Inicio(props) {
         }
     }
 
-    function handleModalAddEnfermeiro(){
+    function handleModalAddEnfermeiro() {
         if (modal === 0) {
             return (
                 <div>
@@ -234,6 +261,47 @@ function Inicio(props) {
             return (<div>
                 <div className="modal-body modalbodyRes">
                     <p>Erro ao cadastrar Enfermeiro!</p>
+                </div>
+                <div className="modal-footer modalfooterRes">
+                    <button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>)
+        }
+    }
+
+    function handleModalAtriPaciente() {
+        if (modal === 0) {
+            return (
+                <div>
+                    <div className="modal-body modalbodyRes">
+                        <form>
+                            <div className="mb-3 col-md-auto">
+                                <label for="numUtente" className="col-form-label">Numero de Utente do paciente:</label>
+                                <input type="text" className="form-control" name="numUtente" value={atribuicao.numUtente} onChange={handleAtribuicao} />
+                            </div>
+                            <div className="mb-3 col-md-auto">
+                                <label for="cedulaPro" className="col-form-label">Cedula Profissional do enfermeiro:</label>
+                                <input type="text" className="form-control" name="cedulaPro" value={atribuicao.cedulaPro} onChange={handleAtribuicao} />
+                            </div>
+                        </form>
+                    </div>
+                    <div className="modal-footer modalfooterRes">
+                        <button type="button" className="btn btn-primary rounded-pill" onClick={() => addAtribuicao()} id="registarForm">Atribuir</button>
+                    </div>
+                </div>)
+        } else if (modal === 1) {
+            return (<div>
+                <div className="modal-body modalbodyRes">
+                    <p>Paciente atribuido com Sucesso!</p>
+                </div>
+                <div className="modal-footer modalfooterRes">
+                    <button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>)
+        } else {
+            return (<div>
+                <div className="modal-body modalbodyRes">
+                    <p>Erro ao atribuir paciente!</p>
                 </div>
                 <div className="modal-footer modalfooterRes">
                     <button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal">Fechar</button>
@@ -345,24 +413,24 @@ function Inicio(props) {
                             d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
                     </svg> Adicionar Paciente</button>
             </div>
-            {login.status === "admin"? 
+            {login.status === "admin" ?
+                <div className="pt-4 col-md-4">
+                    <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
+                        data-bs-target="#modalRegEnfermeiro"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-clipboard2-check" viewBox="0 0 16 16">
+                            <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z" />
+                            <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z" />
+                            <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3Z" />
+                        </svg> Adicionar Enfermeiro</button>
+                </div>
+                :
+                <div></div>}
+
             <div className="pt-4 col-md-4">
                 <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
-                    data-bs-target="#modalRegEnfermeiro"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-clipboard2-check" viewBox="0 0 16 16">
-                        <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z" />
-                        <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z" />
-                        <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3Z" />
-                    </svg> Adicionar Enfermeiro</button>
-            </div>
-            :
-            <div></div>}
-{/* 
-            <div className="pt-4 col-md-4">
-                <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
-                    data-bs-target="#modalAddPacToEnf"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                    data-bs-target="#modalAtrPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                         <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                    </svg> Adicionar paciente a Infermeiro</button>
-            </div> */}
+                    </svg> Atribuir Paciente</button>
+            </div>
 
             {/* <div className="pt-4 col-md-4">
                 <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
@@ -401,6 +469,17 @@ function Inicio(props) {
                             <h3>Inserir Enfermeiro</h3>
                         </div>
                         {handleModalAddEnfermeiro()}
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal fade" id="modalAtrPaciente" tabindex="-1" aria-labelledby="modalAtrPaciente" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h3>Inserir Enfermeiro</h3>
+                        </div>
+                        {handleModalAtriPaciente()}
                     </div>
                 </div>
             </div>
