@@ -424,13 +424,16 @@ function Inicio(props) {
                 </div>
                 :
                 <div></div>}
-
-            <div className="pt-4 col-md-4">
-                <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
-                    data-bs-target="#modalAtrPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                    </svg> Atribuir Paciente</button>
-            </div>
+            {login.status === "admin" ?
+                <div className="pt-4 col-md-4">
+                    <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
+                        data-bs-target="#modalAtrPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                        </svg> Atribuir Paciente</button>
+                </div>
+                :
+                <div></div>
+            }
 
             {/* <div className="pt-4 col-md-4">
                 <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
@@ -477,7 +480,7 @@ function Inicio(props) {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h3>Inserir Enfermeiro</h3>
+                            <h3>Atribuir Enfermeiro</h3>
                         </div>
                         {handleModalAtriPaciente()}
                     </div>
