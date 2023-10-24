@@ -57,7 +57,8 @@ function RegModal() {
     nomeEntidade: ename,
     email: email,
     nif: nif,
-    password: pass
+    password: pass,
+    status: "admin"
   };
 
 
@@ -67,7 +68,7 @@ function RegModal() {
 
     if (pass === cpass) {
 
-      const sendData = await fetch("http://localhost:5000/api/registo", { method: "POST", body: JSON.stringify(data), headers: { "content-type": "application/json" } });
+      const sendData = await fetch("http://localhost:5000/api/registo", { method: "POST", headers: { "content-type": "application/json"},  body: JSON.stringify(data) });
       const response = await sendData.json();
       console.log(response)
     } else {

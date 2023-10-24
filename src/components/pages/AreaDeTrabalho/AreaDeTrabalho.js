@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import './AreaDeTrabalho.css';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { LoginContext } from "../../../context/LoginContext";
-import { useNavigate } from 'react-router-dom';
+
 
 function AreaDeTrabalho() {
 
@@ -12,16 +12,6 @@ function AreaDeTrabalho() {
     const [texto, setTexto] = useState('');
     const [modal, setModal] = useState(0);
     const [id, setId] = useState({});
-    //controle de validação de Login
-    const { login } = useContext(LoginContext);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!login.email || !login.password) {
-            navigate('/errorPage')
-        }
-    })
-
 
     //start the patients list Fetching on the backend.
     useEffect(() => {
@@ -40,6 +30,7 @@ function AreaDeTrabalho() {
         }
         setTexto('')
     }, [data])
+
     useEffect(() => {
 
         const handleResize = () => {
@@ -66,6 +57,12 @@ function AreaDeTrabalho() {
         }
     }, [modal])
 
+    //controle de validação de Login
+    const { login } = useContext(LoginContext);
+
+    if (!login.id || !login.status) {
+        return (<Navigate to='/' />)
+    }
 
     function TbodyPatients() {
 
@@ -191,8 +188,8 @@ function AreaDeTrabalho() {
         }
     }
 
-    return (
 
+    return (
         <div>
             <h5 className="p-1">Área de Trabalho</h5>
             <table className="table table-responsive table-striped">
@@ -224,5 +221,6 @@ function AreaDeTrabalho() {
         </div>
     )
 }
+
 
 export { AreaDeTrabalho }

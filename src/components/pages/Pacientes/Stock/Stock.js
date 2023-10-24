@@ -1,17 +1,16 @@
 import { LoginContext } from "../../../../context/LoginContext";
-import React, { useContext, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Navigate } from 'react-router-dom';
 
 
 function Stock() {
     //controle de validação de Login
-    const { login } = useContext(LoginContext);
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (!login.email || !login.password) {
-            navigate('/errorPage')
-        }
-    })
+   //controle de validação de Login
+   const { login } = useContext(LoginContext);
+    
+   if (!login.id || !login.status) {
+       return (<Navigate to='/'/>)
+   }
 
 
 
