@@ -23,7 +23,7 @@ import Perfil from './components/pages/Pacientes/Perfil/Perfil';
 import Stock from './components/pages/Pacientes/Stock/Stock';
 import Historico from './components/pages/Pacientes/Historico/Historico';
 import MainHome from './components/pages/MainHome';
-import MasonryComponent from './components/pages/Receitas/TabelaReceitas';
+import PaginationMasonry from './components/pages/Receitas/TabelaReceitas';
 
 const router = createBrowserRouter([
     {
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'pacientes/receitas/:id',
-                element: <MasonryComponent/>
+                element: <PaginationMasonry/>
             },
             {
                 path: 'pacientes/receitas/inserirReceitas/:id',

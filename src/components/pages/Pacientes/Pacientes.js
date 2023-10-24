@@ -1,5 +1,5 @@
 import { LoginContext } from "../../../context/LoginContext";
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 
 import React, { useContext, useEffect, useState } from "react";
 import './Pacientes.css'
@@ -271,10 +271,10 @@ function ShowData() {
           <div className="col nome-utente">{paciente.nome}</div>
           <div className="col num-utente">Nº: {paciente.numUtente}</div>
           <div className="col-8 btns-utentes">
-            <a className="col-2 btn btn-utentes" href={`/pacientes/receitas/${paciente.numUtente}`}>Receitas</a>
-            <a className="col-2 btn btn-utentes" href='/pacientes/perfil/:id'>Perfil</a>
-            <a className="col-2 btn btn-utentes" href="/pacientes/stock/:id">Stock</a>
-            <a className="col-2 btn btn-utentes" href="/pacientes/historico/:id">Histórico</a>
+            <Link className="col-2 btn btn-utentes" to={`/pacientes/receitas/${paciente.numUtente}`}>Receitas</Link>
+            <Link className="col-2 btn btn-utentes" to='/pacientes/perfil/:id'>Perfil</Link>
+            <Link className="col-2 btn btn-utentes" to="/pacientes/stock/:id">Stock</Link>
+            <Link className="col-2 btn btn-utentes" to="/pacientes/historico/:id">Histórico</Link>
           </div>
         </div>
       ))}
