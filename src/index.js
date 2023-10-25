@@ -15,7 +15,7 @@ import SobreNos from './components/pages/sobrenos/SobreNos';
 import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
-import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
+import { InserirReceita } from './components/pages/Receitas/InserirReceita/InserirReceita';
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
 import {Pacientes} from './components/pages/Pacientes/Pacientes';
 import { DetailAllPacientes } from './components/pages/Pacientes/DetailAllPacientes/DetailAllPacientes';

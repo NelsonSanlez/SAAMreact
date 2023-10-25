@@ -3,7 +3,7 @@ import { Receitas } from "./Receitas";
 import Masonry from "react-masonry-css";
 import { ResponsiveMasonry } from "react-responsive-masonry";
 import { LoginContext } from "../../../context/LoginContext";
-import { useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 
 
@@ -19,10 +19,9 @@ const PaginationMasonry = () => {
 
   //controle de validação de Login
   const { login } = useContext(LoginContext);
-  const navigate = useNavigate();
   useEffect(() => {
-    if (!login.email || !login.password) {
-      navigate("/errorPage");
+    if (!login.id || !login.status) {
+      <Navigate to='/'/>
     }
   });
 
@@ -98,9 +97,8 @@ const PaginationMasonry = () => {
 
   return (
     <div>
-     
-      <MasonryComponent/>
-      <ReactPaginate
+     <div className="row  " style={{display:"flex",alignContent:"space-around" }}>
+     <ReactPaginate
         previousLabel={"← Anterior"}
         nextLabel={"Próximo →"}
         pageClassName="page-item"
@@ -117,8 +115,12 @@ const PaginationMasonry = () => {
         onPageChange={handlePageChange}
         containerClassName="pagination"
         activeClassName="active"
-        /* forcePage={pageOffset} */ //maybe this isnt needed */
       />
+    <Link className="btn btn" to="/pacientes/receitas/inserirReceitas/:id">Nova Receita</Link>
+      </div>
+
+      <MasonryComponent/>
+      
     </div>
   );
 };
