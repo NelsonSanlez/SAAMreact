@@ -15,7 +15,7 @@ import SobreNos from './components/pages/sobrenos/SobreNos';
 import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
-import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
+import { InserirReceita } from './components/pages/Receitas/InserirReceita/InserirReceita';
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
 import {Pacientes} from './components/pages/Pacientes/Pacientes';
 import { DetailAllPacientes } from './components/pages/Pacientes/DetailAllPacientes/DetailAllPacientes';
@@ -23,7 +23,7 @@ import {Perfil} from './components/pages/Pacientes/Perfil/Perfil';
 import Stock from './components/pages/Pacientes/Stock/Stock';
 import {Historico} from './components/pages/Pacientes/Historico/Historico';
 import MainHome from './components/pages/MainHome';
-import MasonryComponent from './components/pages/Receitas/TabelaReceitas';
+import PaginationMasonry from './components/pages/Receitas/TabelaReceitas';
 import Usuario from './components/pages/Usuario/Usuario';
 
 const router = createBrowserRouter([
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'pacientes/receitas/:id',
-                element: <MasonryComponent/>
+                element: <PaginationMasonry/>
             },
             {
                 path: 'pacientes/receitas/inserirReceitas/:id',

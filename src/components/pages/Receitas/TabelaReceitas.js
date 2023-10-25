@@ -1,28 +1,29 @@
-import React, { useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
 import { Receitas } from "./Receitas";
 import Masonry from "react-masonry-css";
 import { ResponsiveMasonry } from "react-responsive-masonry";
+import { LoginContext } from "../../../context/LoginContext";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 
-// Define an object that specifies the number of columns to use at different breakpoints
-const breakpointColumnsObj = {
-  default: 2, // Default number of columns
-  //700: 1 // If screen width is 700px or less, use 1 column
-};
 
 // Define a component that uses the Masonry layout to display a list of items
-const MasonryComponent = () => {
-  // Define state to keep track of the height of each column
-  const [colHeights, setColHeights] = useState(
-    new Array(breakpointColumnsObj.default).fill(0)
-  );
-
+const PaginationMasonry = () => {
+ 
   // define a state to keep track of the items
-  const [items, setItems] = useState([]);
+  const [itemsOffset, setItemsOffset] = useState(); // numero de items anteriores
+  const [currentItems, setCurrentItems] = useState([]); // items da pagina atual
+  const [TotalItems, setTotalItems] = useState([]); // todos os items
 
-  // Define a ref to keep track of the columns themselves
-  const cols = useRef([]);
+  const itemsPerPage = 4; // items por pagina
 
-
+  //controle de validação de Login
+  const { login } = useContext(LoginContext);
+  useEffect(() => {
+    if (!login.id || !login.status) {
+      <Navigate to='/'/>
+    }
+  });
 
   //Fetch the items from the backend
   async function fetchMultipleRecipes(id) {
@@ -30,9 +31,11 @@ const MasonryComponent = () => {
       const res = await fetch(
         `http://localhost:5000/pacientes/AllReceitas/${id}`
       );
+
       const data = await res.json();
-      //  console.log(data);  //aqui já tenho os dados
-      return data;
+      if (res.ok) {
+        return data;
+      }
     } catch (error) {
       console.error(error);
     }
@@ -40,73 +43,84 @@ const MasonryComponent = () => {
 
   // Fetch the items from the backend when the component mounts
   useEffect(() => {
-    async function fetchData() {
-      const items = await fetchMultipleRecipes();
-      //   console.log('Items:', items );
-      setItems(items);
-    }
-
-    fetchData();
-  }, []);
-
-  // Reset the column heights when the component mounts
-  useEffect(() => {
-    setColHeights(new Array(breakpointColumnsObj.default).fill(0));
-  }, []);
-
-  // Reset the column heights and heights of the items when the window is resized
-  const handleResize = () => {
-    setColHeights(new Array(breakpointColumnsObj.default).fill(0));
-    cols.current.forEach((col) => {
-      col.style.height = "";
-      console.log(col.style.height);
-    });
-  };
-
-  // Add a resize event listener when the component mounts, and remove it when it unmounts
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
+    const Fetch = async function fetchData() {
+      const receita = await fetchMultipleRecipes();
+      // set Totalitems and itemsOffset
+      setTotalItems(receita);
+      setItemsOffset(0);
     };
+    //para apnas fazer o fetch da primeira vez
+    if (TotalItems.length === 0) {
+      Fetch();
+    }
   }, []);
 
-  // Update the column heights and heights of the items when a new item is loaded
-  const handleItemLoad = (index, height) => {
-    const colIndex = index % breakpointColumnsObj.default;
-    const colHeight = colHeights[colIndex];
-    const newColHeight = colHeight + height;
-    setColHeights((prevColHeights) => {
-      const newColHeights = [...prevColHeights];
-      newColHeights[colIndex] = newColHeight;
-      return newColHeights;
-    });
-    cols.current[colIndex].style.height = `${newColHeight}px`;
-    // console.log("breakpointCols:", breakpointColumnsObj);
-    console.log("Number of items:", items.length);
-    console.log("Column heights:", colHeights);
-    console.log("hewwo2");
+
+  // Use Effect to set the currentItems
+  useEffect(() => {
+    if (itemsOffset !== undefined) {
+      setCurrentItems(
+        TotalItems.slice(itemsOffset, itemsPerPage + itemsOffset)
+      );      
+    }
+  }, [itemsOffset, TotalItems]);
+
+
+  // Function to handle the page change
+  const handlePageChange = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % TotalItems.length;
+    setItemsOffset(newOffset);
   };
 
-  // Render the Masonry layout with the specified breakpoint columns and list of items
+  function MasonryComponent(){
+    return (
+       <Masonry
+        className="masonry  "
+        columnClassName="masonry-column  "
+        style={{ display: "flex" }}
+        colSpan={2}
+      >
+        {currentItems.map((item, i) => (
+          <Receitas
+            key={i}
+            item={item}
+            
+          />
+        ))}
+      </Masonry>
+    )
+  }
+
   return (
-    <Masonry
-      className="masonry  "
-      columnClassName="masonry-column  "
-      style={{ display: "flex" }}
-      colSpan={2}
-      cols={2}
-    >
-      {items.map((items, i) => (
-        <Receitas
-          key={i}
-          item={items}
-          onLoad={(height) => handleItemLoad(i, height)}
-        />
-      ))}
-    </Masonry>
+    <div>
+     <div className="row  " style={{display:"flex",alignContent:"space-around" }}>
+      <div className="col-10">
+     <ReactPaginate
+        previousLabel={"← Anterior"}
+        nextLabel={"Próximo →"}
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        breakLabel={"..."}
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        pageCount={Math.ceil(TotalItems.length / itemsPerPage)} //n de paginas
+        marginPagesDisplayed={2}
+        onPageChange={handlePageChange}
+        containerClassName="pagination"
+        activeClassName="active"
+      />
+      </div>
+    <Link className="col-2 btn btn-primary mb-3" to={`/pacientes/receitas/inserirReceitas/:numUtente`}>Nova Receita</Link>
+      </div>
+
+      <MasonryComponent/>
+      
+    </div>
   );
 };
 
-// Export the MasonryComponent for use in other components
-export default MasonryComponent;
+export default PaginationMasonry;

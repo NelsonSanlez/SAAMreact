@@ -12,13 +12,21 @@ function AreaDeTrabalho() {
     const [texto, setTexto] = useState('');
     const [modal, setModal] = useState(0);
     const [id, setId] = useState({});
+    //controle de validação de Login
+    const { login } = useContext(LoginContext);
 
     //start the patients list Fetching on the backend.
     useEffect(() => {
         if (!data[0]) {
             const startPatient = async () => {
                 try {
-                    const res = await fetch(`http://localhost:5000/findPatients`)
+                    const res = await fetch(`http://localhost:5000/findPatients`,
+                        {
+                            method: 'POST',
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({id:login.id})
+                        })
+
                     const pacientes = await res.json()
                     setData(pacientes)
 
@@ -57,8 +65,7 @@ function AreaDeTrabalho() {
         }
     }, [modal])
 
-    //controle de validação de Login
-    const { login } = useContext(LoginContext);
+
 
     if (!login.id || !login.status) {
         return (<Navigate to='/' />)
