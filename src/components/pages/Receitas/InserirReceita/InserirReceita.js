@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import './InserirReceita.css';
-import iconPlus from '../../../images/🦆 icon _plus circle_.png';
+import iconPlus from '../../../../images/🦆 icon _plus circle_.png'
 
 class InserirReceita extends Component {
   handleClick = async () => {

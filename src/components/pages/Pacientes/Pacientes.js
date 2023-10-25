@@ -341,7 +341,6 @@ const pacientes = [
 let oPaciente;
 
 function ShowData({ setOPaciente }) {
-
   return (
     <div id="Conteudo">
       {pacientes.map((paciente) => (
@@ -357,12 +356,12 @@ function ShowData({ setOPaciente }) {
             Nº: {paciente.numUtente}
           </div>
           <div className="col-8 btns-utentes">
-            <a
+            <Link
               className="col-2 btn btn-utentes"
-              href={`listaReceitas.html?name=${paciente.nome}`}
+              to={`/pacientes/receitas/${paciente.numUtente}`}   /* ${paciente.numUtente}*/
             >
               Receitas
-            </a>
+            </Link>
             <Link
               className="col-2 btn btn-utentes"
               to={`/pacientes/perfil/${paciente.numUtente}`}

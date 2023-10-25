@@ -4,17 +4,6 @@ import "./Receitas.css";
 import MaisInfo from "./ModalMaisInfo";
 
 
-
-async function OneRecipe(id) {
-  try {
-    const res = await fetch(`http://localhost:5000/pacientes/${id}`);
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 function Receitas(props) {
   const [recipeData, setRecipeData] = useState({});
   const [horarios, setHorarios] = useState([]);
@@ -22,15 +11,18 @@ function Receitas(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await OneRecipe(props.id);
+     const receita= props.item
+     // console.log("R na receita:", receita)
+     
+      //const data = await OneRecipe(props.id);
       // confirm that data is an object and has a property called Horários that is an array
-      if (data && data.Horarios && Array.isArray(data.Horarios)) {
-        setRecipeData(data);
-        setHorarios(data.Horarios);
+      if (receita && receita.horarios && Array.isArray(receita.horarios)) {
+        setRecipeData(receita);
+        setHorarios(receita.horarios);
       } else {
-        console.error("Data or horarios is missing or not an array:", data);
+        console.error("Data or horarios is missing or not an array:", props);
       }
-    }
+    }  
 
     fetchData();
   }, [props.id]);
@@ -44,7 +36,7 @@ function Receitas(props) {
             <div className="col  paddingBgCyan m-0 ">
                 <div className="bgCyan rounded-4 ">
                     <div className=" paddingInputs ">
-                        <p >{recipeData.Nome} </p>
+                        <p >{recipeData.medicamento} </p>
                     </div>
               </div>
             </div>
@@ -54,7 +46,7 @@ function Receitas(props) {
             <div className="col  paddingBgCyan  ">
                 <div className="bgCyan rounded-4 ">
                         <div className="  paddingInputs">
-                    <p >{recipeData.Dose} </p>
+                    <p >{recipeData.dose} </p>
                     </div>
                 </div>
               </div>
@@ -62,20 +54,20 @@ function Receitas(props) {
           <div className="row">
             <div className="col ">Horários</div>
             <div className="col  bgCyan rounded-4 my-1 form-control border-0 ">
-              {horarios.map((Horários, index) => (
+              {horarios.map((horarios, index) => (
                 <input
                   className="transparent-input "
                   key={index}
                   type="text"
-                  value={Horários}
+                  value={horarios.horario  }
                   disabled
                   readOnly
                 />
               ))}
             </div>
           </div>
-          <div className="row">
-            <div className="col"></div>
+          <div className="row ">
+            <div className="col "></div>
             <div className="col-7 m-0 p-0 " >
              
                 <MaisInfo propValue={recipeData}/>
