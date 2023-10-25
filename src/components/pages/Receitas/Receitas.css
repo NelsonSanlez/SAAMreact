@@ -16,10 +16,10 @@
 #card_info_value {
     background-color: #CAF0F8;
     border-radius: 8px;
-    width: 100%;
-    margin: 0.26rem;
-    padding: 0.12rem;
-    padding-left: 0.3rem;
+   /*  width: 100%;
+    margin: 0.20rem;
+    padding: 0.10rem;
+    padding-left: 0.2rem; */
     text-align: left;
     font-size: 1rem;
     font-weight: 500;
@@ -29,7 +29,42 @@
     height: 5rem;
 }
 
+.bgCyan{
+    background-color: #CAF0F8;
+}
 
+.transparent-input {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: inherit;
+    outline: none;
+  }
+
+  .paddingInputs {
+     padding-top: 0.6rem;
+    padding-bottom: 0.005rem; 
+    padding-left: 0.3rem;
+    
+  }
+
+  .paddingBgCyan{
+    padding: 0.3rem;
+  }
+
+  .btnColor{
+    background-color: #90E0EF;
+  } 
+
+  .bgBlue{
+    background-color: #90E0EF;
+  } 
+  
+  .btn-hover-effect:hover {
+    background-color: #62cde0; /* Change the background color on hover */
+    color: black; /* Change the text color on hover */
+    border-color: grey; /* Change the border color on hover */
+  }
 
 
 

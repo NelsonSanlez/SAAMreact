@@ -61,7 +61,8 @@ function RegModal() {
     nomeEntidade: ename,
     email: email,
     nif: nif,
-    password: pass
+    password: pass,
+    status: "admin"
   };
 
 

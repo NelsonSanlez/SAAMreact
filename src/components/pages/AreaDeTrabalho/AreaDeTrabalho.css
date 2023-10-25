@@ -14,7 +14,9 @@ thead, tbody tr {
     table-layout: fixed;
     overflow-wrap: break-word;
 }
-
+#infotext{
+    width: 100%;
+}
 /* Button */
 .btnEscuro{
     background-color: #03045E;

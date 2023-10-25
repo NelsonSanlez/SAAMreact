@@ -1,18 +1,25 @@
+import { LoginContext } from "../../../../context/LoginContext";
+import React, { useContext } from "react";
+import { Navigate } from 'react-router-dom';
 
 
-import React from 'react';
+function Stock() {
+    //controle de validação de Login
+   //controle de validação de Login
+   const { login } = useContext(LoginContext);
+    
+   if (!login.id || !login.status) {
+       return (<Navigate to='/'/>)
+   }
 
 
-function Stock () {
+
+    return (
+        <div>Hello!! Aqui o STOCK!!!</div>
 
 
 
-return(
-<div>Hello!! Aqui o STOCK!!!</div>
-
-
-
-)
+    )
 
 
 }

@@ -1,30 +1,29 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
+import './index.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { LoginProvider } from './context/LoginContext';
+
 import Contactos from './components/pages/contactos/Contactos';
 import SobreNos from './components/pages/sobrenos/SobreNos';
 import { Inicio } from "./components/pages/Inicio/Inicio";
 import { AreaDeTrabalho } from './components/pages/AreaDeTrabalho/AreaDeTrabalho';
 import { Notificacoes } from './components/pages/Notificacoes/Notificacoes';
-import { InserirReceita } from './components/pages/InserirReceita/InserirReceita';
-import {Receitas} from './components/pages/Receitas/Receitas'
+import { InserirReceita } from './components/pages/Receitas/InserirReceita/InserirReceita';
 import ErrorPage from './components/pages/ErrorPage/ErrorPage'
-import Pacientes from './components/pages/Pacientes/Pacientes';
-import Perfil from './components/pages/Pacientes/Perfil/Perfil';
+import {Pacientes} from './components/pages/Pacientes/Pacientes';
+import { DetailAllPacientes } from './components/pages/Pacientes/DetailAllPacientes/DetailAllPacientes';
+import {Perfil} from './components/pages/Pacientes/Perfil/Perfil';
 import Stock from './components/pages/Pacientes/Stock/Stock';
-import Historico from './components/pages/Pacientes/Historico/Historico';
+import {Historico} from './components/pages/Pacientes/Historico/Historico';
 import MainHome from './components/pages/MainHome';
-
-
-
-
+import PaginationMasonry from './components/pages/Receitas/TabelaReceitas';
 
 const router = createBrowserRouter([
     {
@@ -64,22 +63,26 @@ const router = createBrowserRouter([
             },
             {
                 path: 'pacientes/receitas/:id',
-                element: <Receitas/>
+                element: <PaginationMasonry/>
             },
             {
                 path: 'pacientes/receitas/inserirReceitas/:id',
                 element: <InserirReceita/>
+            },  
+            {
+                path: '/pacientes/detailAllPacientes',
+                element: <DetailAllPacientes/>
             },
             {
-                path: 'pacientes/perfil/:id',
+                path: `/pacientes/perfil/:id`,
                 element: <Perfil/>
             },
             {
-                path: 'pacientes/stock/:id',
+                path: `/pacientes/stock/:id`,
                 element: <Stock/>
             },
             {
-                path: 'pacientes/historico/:id',
+                path: `/pacientes/historico/:id`,
                 element: <Historico/>
             },
             {
@@ -92,9 +95,9 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
-    <RouterProvider router={router} />
-
+    <LoginProvider>
+        <RouterProvider router={router} />
+    </LoginProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

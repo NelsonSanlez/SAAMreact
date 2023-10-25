@@ -1,0 +1,12 @@
+
+.contentModal{
+    display: flex;
+    align-content: space-evenly;
+    justify-content: center;
+}
+
+.fNotFText{
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
