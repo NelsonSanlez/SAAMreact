@@ -32,11 +32,7 @@ const PaginationMasonry = () => {
         `http://localhost:5000/pacientes/AllReceitas/${id}`
       );
 
-      console.log("res:" + res);
       const data = await res.json();
-      console.log("data:" + data);
-      //const receitas=JSON.stringify(data);
-      //console.log('receita:'+receitas);
       if (res.ok) {
         return data;
       }
@@ -98,6 +94,7 @@ const PaginationMasonry = () => {
   return (
     <div>
      <div className="row  " style={{display:"flex",alignContent:"space-around" }}>
+      <div className="col-10">
      <ReactPaginate
         previousLabel={"← Anterior"}
         nextLabel={"Próximo →"}
@@ -116,7 +113,8 @@ const PaginationMasonry = () => {
         containerClassName="pagination"
         activeClassName="active"
       />
-    <Link className="btn btn" to="/pacientes/receitas/inserirReceitas/:id">Nova Receita</Link>
+      </div>
+    <Link className="col-2 btn btn-primary mb-3" to={`/pacientes/receitas/inserirReceitas/:numUtente`}>Nova Receita</Link>
       </div>
 
       <MasonryComponent/>

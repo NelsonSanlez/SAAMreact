@@ -11,12 +11,13 @@ class InserirReceita extends Component {
   // listening to click of button to send receita info to db
   botaoIR.addEventListener(
     "click", async(event) => {
+
       const nome = document.getElementById("Nome").value
       const via = document.getElementById("Via").value
       const dose = document.getElementById("Dose").value
       const validade = document.getElementById("Validade").value
-      const data_início = document.getElementById("Data_início").value
-      const data_fim = document.getElementById("Data_fim").value
+      const dataInicio = document.getElementById("Data_início").value
+      const dataFim = document.getElementById("Data_fim").value
       const stock = document.getElementById("Stock").value
   
      const horariosInputs = document.querySelectorAll('[name="Horários[]"]');
@@ -24,9 +25,11 @@ class InserirReceita extends Component {
   
      horariosInputs.forEach((input) => {
       horários.push(input.value);
+      input.status="";
+      console.log(horários)
   });
   
-      const data = {nome,via, dose, validade, data_início, data_fim, stock, horários}
+      const data = {nome,via, dose, validade, dataInicio, dataFim, stock, horários}
       const inserido = await sendRecipe(data);
       
       if (inserido){
