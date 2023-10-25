@@ -1,0 +1,35 @@
+
+
+
+.usuarioGenDiv{
+/* background-color: burlywood; */
+padding: 1rem;
+}
+
+.imgIniciaisUsuarioDiv{
+    /* background-color:blueviolet; */
+    padding: 1rem;
+}
+
+.imgIniciaisUsuario{
+    background-color:brown;
+    border:dotted 2px grey ;
+    border-radius: 50%;
+    box-shadow: black -3px 3px 44px 4px;
+}
+
+
+
+
+.txtNomeUsuarioPageDiv{
+    /* background-color:brown; */
+    padding: 1rem;
+    font-size: 1.46rem;
+    font-weight: bold;
+    text-shadow: black -1px 1px 90px;
+}
+
+.dadosUsuarioPageDiv{
+    padding: 1rem;
+}
+

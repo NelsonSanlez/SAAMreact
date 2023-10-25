@@ -2,6 +2,7 @@ import { LoginContext } from "../../../context/LoginContext";
 import { Link, Navigate} from 'react-router-dom';
 import React, { useContext, useEffect, useState } from 'react';
 import './Pacientes.css';
+import { PacienteAdicionar } from '../../Buttons/PacienteAdicionar';
 
 // ONLY 3 PATIENTS
 // const pacientes = [
@@ -340,11 +341,34 @@ const pacientes = [
 
 let oPaciente;
 
-function ShowData({ setOPaciente }) {
+function ShowData({  }) {
 
+  const [data, setData] = useState([]);
+  async function FetchPacientes() {
+    async function getData() {
+      try {
+        const res = await fetch(`http://localhost:5000/listarUtentes`);
+        const pacientes = await res.json();
+        return(pacientes)
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    const dataget = getData()
+    const dataget2 = await dataget
+    console.log('minha data inside antes return: ' + dataget2);
+    setData(dataget2)
+  }
+FetchPacientes()
   return (
+
+    <div>
+    <div>
+      <PacienteAdicionar />
+    </div>
+
     <div id="Conteudo">
-      {pacientes.map((paciente) => (
+      {data.map((paciente) => (
         <div
           key={paciente.numUtente}
           className="container-fluid row utente_lista"
@@ -384,6 +408,7 @@ function ShowData({ setOPaciente }) {
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 }

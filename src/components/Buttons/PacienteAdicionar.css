@@ -1,0 +1,25 @@
+
+
+
+.btnsCrudPacientesDiv{
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    background-color: blueviolet;
+    margin: 0;
+    padding: 0;
+}
+
+
+.btnAddPacienteDiv,
+.btnDelPacienteDiv,
+.btnEditPacienteDiv{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+
+
+
