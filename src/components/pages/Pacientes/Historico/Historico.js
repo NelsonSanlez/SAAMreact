@@ -1,5 +1,5 @@
 import { LoginContext } from "../../../../context/LoginContext";
-import React, { useContext} from "react";
+import React, { useContext,useEffect, useState} from "react";
 import { Navigate } from 'react-router-dom';
 // import { FindThisPaciente } from "../Perfil/Perfil";
 import { useParams } from 'react-router';
@@ -116,10 +116,34 @@ let thisPacienteEmail;
 let thisPacienteTelemovel;
 let thisPacienteNbrMensagens;
 
+
+
 const FindThisPaciente = function () {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function FetchPacientes() {
+      async function getData() {
+        try {
+          const res = await fetch(`http://localhost:5000/listarUtentes`);
+          const pacientes = await res.json();
+          return(pacientes)
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      const dataget = getData()
+      const dataget2 = await dataget
+      console.log('minha data inside antes return: ' + dataget2);
+      setData(dataget2)
+    }
+    FetchPacientes()
+  }, [])
+
   const { id } = useParams();
   console.log('11:' + id);
-  const pacienteFound = pacientes.find((paciente) => paciente.numUtente == id);
+  const pacienteFound = data.find((paciente) => paciente.numUtente == id);
   console.log('qwe',pacienteFound)
   return pacienteFound
 };

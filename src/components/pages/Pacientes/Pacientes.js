@@ -4,6 +4,109 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Pacientes.css';
 import { PacienteAdicionar } from '../../Buttons/PacienteAdicionar';
 
+
+
+let oPaciente;
+
+function ShowData({  }) {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function FetchPacientes() {
+      async function getData() {
+        try {
+          const res = await fetch(`http://localhost:5000/listarUtentes`);
+          const pacientes = await res.json();
+          return(pacientes)
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      const dataget = getData()
+      const dataget2 = await dataget
+      console.log('minha data inside antes return: ' + dataget2);
+      setData(dataget2)
+    }
+    FetchPacientes()
+  }, [])
+  
+  return (
+
+    <div>
+    <div>
+      <PacienteAdicionar />
+    </div>
+
+    <div id="Conteudo">
+      {data.map((paciente) => (
+        <div
+          key={paciente.numUtente}
+          className="container-fluid row utente_lista"
+        >
+          <div className="col nome-utente">{paciente.nome}</div>
+          <div
+            className="col num-utente"
+            id={paciente.numUtente}
+          >
+            Nº: {paciente.numUtente}
+          </div>
+          <div className="col-8 btns-utentes">
+            <Link
+              className="col-2 btn btn-utentes"
+              to={`/pacientes/receitas/${paciente.numUtente}`}   /* ${paciente.numUtente}*/
+            >
+              Receitas
+            </Link>
+            <Link
+              className="col-2 btn btn-utentes"
+              to={`/pacientes/perfil/${paciente.numUtente}`}
+            >
+              Perfil
+            </Link>
+            <Link
+              className="col-2 btn btn-utentes"
+              to={`/pacientes/stock/${paciente.numUtente}`}
+            >
+              Stock
+            </Link>
+            <Link
+              className="col-2 btn btn-utentes"
+              to={`/pacientes/historico/${paciente.numUtente}`}
+            >
+              Histórico
+            </Link>
+          </div>
+        </div>
+      ))}
+    </div>
+    </div>
+  );
+}
+
+function Pacientes() {
+  //controle de validação de Login
+  const { login } = useContext(LoginContext);
+    
+  if (!login.id || !login.status) {
+      return (<Navigate to='/'/>)
+  }
+  
+  return (
+    <div>
+      <ShowData setOPaciente={0} />
+    </div>
+  );
+}
+
+export { Pacientes, pacientes, oPaciente };
+
+
+
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+
 // ONLY 3 PATIENTS
 // const pacientes = [
 //   {
@@ -53,7 +156,7 @@ import { PacienteAdicionar } from '../../Buttons/PacienteAdicionar';
 //   },
 // ];
 
-// WITH 18 PATIENTS
+// // WITH 18 PATIENTS
 const pacientes = [
   {
     _id: {
@@ -338,94 +441,3 @@ const pacientes = [
     dose: '1 Comp',
   },
 ];
-
-let oPaciente;
-
-function ShowData({  }) {
-
-  const [data, setData] = useState([]);
-  async function FetchPacientes() {
-    async function getData() {
-      try {
-        const res = await fetch(`http://localhost:5000/listarUtentes`);
-        const pacientes = await res.json();
-        return(pacientes)
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    const dataget = getData()
-    const dataget2 = await dataget
-    console.log('minha data inside antes return: ' + dataget2);
-    setData(dataget2)
-  }
-FetchPacientes()
-  return (
-
-    <div>
-    <div>
-      <PacienteAdicionar />
-    </div>
-
-    <div id="Conteudo">
-      {data.map((paciente) => (
-        <div
-          key={paciente.numUtente}
-          className="container-fluid row utente_lista"
-        >
-          <div className="col nome-utente">{paciente.nome}</div>
-          <div
-            className="col num-utente"
-            id={paciente.numUtente}
-          >
-            Nº: {paciente.numUtente}
-          </div>
-          <div className="col-8 btns-utentes">
-            <Link
-              className="col-2 btn btn-utentes"
-              to={`/pacientes/receitas/${paciente.numUtente}`}   /* ${paciente.numUtente}*/
-            >
-              Receitas
-            </Link>
-            <Link
-              className="col-2 btn btn-utentes"
-              to={`/pacientes/perfil/${paciente.numUtente}`}
-            >
-              Perfil
-            </Link>
-            <Link
-              className="col-2 btn btn-utentes"
-              to={`/pacientes/stock/${paciente.numUtente}`}
-            >
-              Stock
-            </Link>
-            <Link
-              className="col-2 btn btn-utentes"
-              to={`/pacientes/historico/${paciente.numUtente}`}
-            >
-              Histórico
-            </Link>
-          </div>
-        </div>
-      ))}
-    </div>
-    </div>
-  );
-}
-
-function Pacientes() {
-  //controle de validação de Login
-  const { login } = useContext(LoginContext);
-    
-  if (!login.id || !login.status) {
-      return (<Navigate to='/'/>)
-  }
-  
-  return (
-    <div>
-      <ShowData setOPaciente={0} />
-    </div>
-  );
-}
-
-export { Pacientes, pacientes, oPaciente };

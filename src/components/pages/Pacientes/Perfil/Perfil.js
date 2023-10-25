@@ -10,7 +10,7 @@ import { CardPaciente } from './CardPaciente';
 import { Button } from 'bootstrap/dist/js/bootstrap.bundle';
 import { Link } from 'react-router-dom';
 
-console.log(pacientes);
+// console.log(pacientes);  
 
 
 let thisPaciente;
