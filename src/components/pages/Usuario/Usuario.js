@@ -44,7 +44,7 @@ const UsuarioPage = () => {
                 <Card style={{ width: '100%' }}>
                     <ListGroup variant="flush">
                         <ListGroup.Item><div className='imgIniciaisUsuarioDiv'>
-                            <img className='imgIniciaisUsuario' src='https://ui-avatars.com/api/?size=128&rounded=true&background=random&color=random&bold=true&length=3&name=Willian+Salvi' />
+                            <img className='imgIniciaisUsuario' src={`https://ui-avatars.com/api/?size=128&rounded=true&background=random&color=random&bold=true&length=3&name=${usuario.primeiroNome}+${usuario.ultimoNome}`} />
                         </div><h3>Imagem de Perfil</h3></ListGroup.Item>
                         <ListGroup.Item><h3>Nome:</h3><p>{`${usuario.primeiroNome}`}</p></ListGroup.Item>
                         <ListGroup.Item><h3>Sobrenome:</h3><p>{`${usuario.ultimoNome}`}</p></ListGroup.Item>
