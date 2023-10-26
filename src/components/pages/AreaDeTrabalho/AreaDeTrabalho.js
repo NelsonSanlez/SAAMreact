@@ -115,6 +115,7 @@ function AreaDeTrabalho() {
                     body: JSON.stringify({ id: id, idMedicamento: idMedicamento, idHorario: idHorario }),
                 });
                 if (res.ok) {
+                    setData([])
                     return true
                 } else {
                     throw new Error(`Falha ao editar Status de remédio`)
@@ -122,10 +123,10 @@ function AreaDeTrabalho() {
             } catch (error) {
                 console.error(error)
             }
+            
         }
-        if (editMedStatus() === true) {
-            setData([])
-        }
+        editMedStatus()
+        
     }
 
     async function handleClickNok() {
