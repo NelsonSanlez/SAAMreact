@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import './Historico.css'
 
 // let thisPacienteNbrMensagens
-{}
+
 
 // const pacientes = [
 //   {
@@ -121,41 +121,52 @@ let thisPacienteNbrMensagens;
 const FindThisPaciente = function () {
 
   const [data, setData] = useState([]);
+  const { id } = useParams();
+  console.log('id after useparams: ' + id);
+
 
   useEffect(() => {
     async function FetchPacientes() {
-      async function getData() {
+      // async function getData() {
         try {
           const res = await fetch(`http://localhost:5000/listarUtentes`);
           const pacientes = await res.json();
-          return(pacientes)
+          setData(pacientes)
         } catch (error) {
           console.error(error);
         }
-      }
-      const dataget = getData()
-      const dataget2 = await dataget
-      console.log('minha data inside antes return: ' + dataget2);
-      setData(dataget2)
+      // }
+      // const dataget = getData()
+      // const dataget2 = await dataget
+      // console.log('data inside  historico: ' + dataget2);
+      // setData(await dataget2)
+      // return data
     }
+    // const dataFound = 
     FetchPacientes()
-  }, [])
 
-  const { id } = useParams();
-  console.log('11:' + id);
+  }, [])
+  console.log('id: ' + id);
+  console.log('data: ' + data);
   const pacienteFound = data.find((paciente) => paciente.numUtente == id);
-  console.log('qwe',pacienteFound)
+  console.log('pacienteFound: ',pacienteFound)
   return pacienteFound
+  
+
+ 
 };
 
 const Historico = function (props) {
   let pacienteFound= FindThisPaciente();
-    //controle de validação de Login
-    const { login } = useContext(LoginContext);
-    
-    if (!login.id || !login.status) {
-        return (<Navigate to='/'/>)
-    }
+  //controle de validação de Login
+  const { login } = useContext(LoginContext);
+  
+  if (!login.id || !login.status) {
+    return (<Navigate to='/'/>)
+  }
+  if (!pacienteFound) {
+    return 'Paciente não encontrado!'; // ou uma mensagem de erro adequada
+  }
 
   return (
     <div>
