@@ -1,15 +1,53 @@
-import { LoginContext } from "../../../../context/LoginContext";
-import React, { useContext,useEffect, useState} from "react";
-import { Navigate } from 'react-router-dom';
-// import { FindThisPaciente } from "../Perfil/Perfil";
-import { useParams } from 'react-router';
-import { Pacientes, pacientes } from '../Pacientes';
-import { Link } from 'react-router-dom';
-import './Historico.css'
+// ONLY 3 PATIENTS
+// const pacientes = [
+//   {
+//     _id: {
+//       $oid: '6511a70a88e392a4f6ddf847',
+//     },
+//     nome: 'Jane Atkinson',
+//     numUtente: '9758246',
+//     telemovel: '922777888',
+//     email: 'janeatkinson@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '15:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//     mensagens: [
+//       {
+//         mensagem: 'asdjasdk askjfbkjs kadhndfsk ksdfjnsdfk',
+//       },
+//       { mensagem: 'dsfdnsd dfdfskjngdfogs dfgsndgfs sfgkjnsdfgk' },
+//     ],
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b31088e392a4f6ddf849',
+//     },
+//     nome: 'Alice Vila',
+//     numUtente: '7346158',
+//     telemovel: '918452456',
+//     email: 'alicevila@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '10:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b34088e392a4f6ddf84a',
+//     },
+//     nome: 'Bob Construtor',
+//     numUtente: '6427815',
+//     telemovel: '962458735',
+//     email: 'bobconstrutor@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '11:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+// ];
 
-// let thisPacienteNbrMensagens
-{}
-
+// WITH 18 PATIENTS
 // const pacientes = [
 //   {
 //     _id: {
@@ -94,6 +132,62 @@ import './Historico.css'
 //       $oid: '6511a70a88e392a4f6ddf847',
 //     },
 //     nome: 'Jane Atkinson',
+//     numUtente: '9758246',
+//     telemovel: '922777888',
+//     email: 'janeatkinson@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '15:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//     mensagens: [
+//       {
+//         mensagem: 'asdjasdk askjfbkjs kadhndfsk ksdfjnsdfk',
+//       },
+//       { mensagem: 'dsfdnsd dfdfskjngdfogs dfgsndgfs sfgkjnsdfgk' },
+//     ],
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b31088e392a4f6ddf849',
+//     },
+//     nome: 'Alice Vilar',
+//     numUtente: '6587498',
+//     telemovel: '918452456',
+//     email: 'alicevila@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '10:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b31088e392a4f6ddf849',
+//     },
+//     nome: 'Alice Vilar',
+//     numUtente: '6587422',
+//     medicamento: 'Ben-u-ron',
+//     hora: '10:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b31088e392a4f6ddf849',
+//     },
+//     nome: 'Alice Vila',
+//     numUtente: '6587421',
+//     telemovel: '918452456',
+//     email: 'alicevila@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '10:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511a70a88e392a4f6ddf847',
+//     },
+//     nome: 'Jane Atkinson',
 //     numUtente: '7346158',
 //     telemovel: '922777888',
 //     email: 'janeatkinson@gmail.com',
@@ -108,69 +202,133 @@ import './Historico.css'
 //       { mensagem: 'dsfdnsd dfdfskjngdfogs dfgsndgfs sfgkjnsdfgk' },
 //     ],
 //   },
+//   {
+//     _id: {
+//       $oid: '6511b34088e392a4f6ddf84a',
+//     },
+//     nome: 'Bob Eletricista',
+//     numUtente: '6427815',
+//     telemovel: '962458735',
+//     email: 'bobconstrutor@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '11:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511a70a88e392a4f6ddf847',
+//     },
+//     nome: 'Jane Atkinson',
+//     numUtente: '9758246',
+//     telemovel: '922777888',
+//     email: 'janeatkinson@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '15:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//     mensagens: [
+//       {
+//         mensagem: 'asdjasdk askjfbkjs kadhndfsk ksdfjnsdfk',
+//       },
+//       { mensagem: 'dsfdnsd dfdfskjngdfogs dfgsndgfs sfgkjnsdfgk' },
+//     ],
+//   },
+//   {
+//     _id: {
+//       $oid: '6511a70a88e392a4f6ddf847',
+//     },
+//     nome: 'Jane Atkinson',
+//     numUtente: '9758246',
+//     telemovel: '922777888',
+//     email: 'janeatkinson@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '15:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//     mensagens: [
+//       {
+//         mensagem: 'asdjasdk askjfbkjs kadhndfsk ksdfjnsdfk',
+//       },
+//       { mensagem: 'dsfdnsd dfdfskjngdfogs dfgsndgfs sfgkjnsdfgk' },
+//     ],
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b31088e392a4f6ddf849',
+//     },
+//     nome: 'Alice Vila',
+//     numUtente: '3265197',
+//     telemovel: '918452456',
+//     email: '',
+//     medicamento: 'Ben-u-ron',
+//     hora: '10:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b31088e392a4f6ddf849',
+//     },
+//     nome: 'Alice Vila',
+//     numUtente: '7346158',
+//     telemovel: '918452456',
+//     email: 'alicevila@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '10:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b34088e392a4f6ddf84a',
+//     },
+//     nome: 'Bob Construtor',
+//     numUtente: '6427815',
+//     telemovel: '962458735',
+//     email: 'bobconstrutor@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '11:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b31088e392a4f6ddf849',
+//     },
+//     nome: 'Alice Vila',
+//     numUtente: '3741516',
+//     telemovel: '918452456',
+//     email: 'alicevila@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '10:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b34088e392a4f6ddf84a',
+//     },
+//     nome: 'Bob Condutor',
+//     numUtente: '6427815',
+//     telemovel: '962458735',
+//     email: 'bobconstrutor@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '11:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
+//   {
+//     _id: {
+//       $oid: '6511b34088e392a4f6ddf84a',
+//     },
+//     nome: 'Bob Astronauta',
+//     numUtente: '6427815',
+//     telemovel: '962458735',
+//     email: 'bobconstrutor@gmail.com',
+//     medicamento: 'Ben-u-ron',
+//     hora: '11:00',
+//     via: 'Oral',
+//     dose: '1 Comp',
+//   },
 // ];
-
-let thisPaciente;
-let thisPacienteNum;
-let thisPacienteEmail;
-let thisPacienteTelemovel;
-let thisPacienteNbrMensagens;
-
-
-
-const FindThisPaciente = function () {
-
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    async function FetchPacientes() {
-      async function getData() {
-        try {
-          const res = await fetch(`http://localhost:5000/listarUtentes`);
-          const pacientes = await res.json();
-          return(pacientes)
-        } catch (error) {
-          console.error(error);
-        }
-      }
-      const dataget = getData()
-      const dataget2 = await dataget
-      console.log('minha data inside antes return: ' + dataget2);
-      setData(dataget2)
-    }
-    FetchPacientes()
-  }, [])
-
-  const { id } = useParams();
-  console.log('11:' + id);
-  const pacienteFound = data.find((paciente) => paciente.numUtente == id);
-  console.log('qwe',pacienteFound)
-  return pacienteFound
-};
-
-const Historico = function (props) {
-  let pacienteFound= FindThisPaciente();
-    //controle de validação de Login
-    const { login } = useContext(LoginContext);
-    
-    if (!login.id || !login.status) {
-        return (<Navigate to='/'/>)
-    }
-
-  return (
-    <div>
-      <div className='numMensagens'><span className='titlesMsg'>Paciente:</span> {pacienteFound.nome} <span className='titlesMsg'>Nº:</span> {pacienteFound.numUtente}</div>
-      <div >
-        <div className='numMensagens'><span className='titlesMsg'>Nº de mensagens:</span> {pacienteFound.mensagens?.length}</div>
-        <div className='textMensagens'><span className='titlesMsg'>Mensagens 1: </span>{pacienteFound.mensagens?.[0]?.mensagem}</div>
-        <div className='textMensagens'><span className='titlesMsg'>Mensagens 2: </span>{pacienteFound.mensagens?.[1]?.mensagem}</div>
-        <div className='textMensagens'><span className='titlesMsg'>Mensagens 3: </span>{pacienteFound.mensagens?.[2]?.mensagem}</div>
-        <div className='textMensagens'><span className='titlesMsg'>Mensagens 4: </span>{pacienteFound.mensagens?.[3]?.mensagem}</div>
-        <div className='textMensagens'><span className='titlesMsg'>Mensagens 5: </span>{pacienteFound.mensagens?.[4]?.mensagem}</div>
-
-      </div>
-    </div>
-  );
-};
-
-export { Historico };

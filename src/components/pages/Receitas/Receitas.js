@@ -12,9 +12,8 @@ function Receitas(props) {
   useEffect(() => {
     async function fetchData() {
      const receita= props.item
-     // console.log("R na receita:", receita)
      
-      //const data = await OneRecipe(props.id);
+
       // confirm that data is an object and has a property called Horários that is an array
       if (receita && receita.horarios && Array.isArray(receita.horarios)) {
         setRecipeData(receita);

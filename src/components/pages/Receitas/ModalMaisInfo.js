@@ -19,9 +19,10 @@ function MaisInfo(props){
 
     // "retirar" a info das props para usar no modal
     const receita=props.propValue;
-    //const horarios=props.propValue.Horarios;
-    //console.log(receita)
-    //console.log(horarios)
+    const horario=props.propValue.horarios;
+    console.log("Props:",props.propValue.horarios)
+    console.log("Receita:",receita)
+    console.log("Horarios:",horario)
 
 return(
     <div className="m-0 p-0 rounded-4" id="card_info_value">
@@ -38,27 +39,27 @@ return(
           <Form>
             <Form.Group className="mb-3 row " >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }} >Nome</Form.Label>
-              <Form.Control className="col rounded-4 me-5" type="text" value={receita.Nome} style={{backgroundColor: '#CAF0F8'}} disabled />
+              <Form.Control className="col rounded-4 me-5" type="text" value={receita.medicamento} style={{backgroundColor: '#CAF0F8'}} disabled />
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }} >Dose</Form.Label>
-              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.Dose} disabled />
+              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.dose} disabled />
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }}>Validade</Form.Label>
-              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.Validade} disabled />
+              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.validade} disabled />
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }}>Data Início</Form.Label>
-              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.Data_início} disabled />
+              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.dataInicio} disabled />
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }}>Data Fim</Form.Label>
-              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.Data_fim} disabled />
+              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.dataFim} disabled />
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }}>Stock</Form.Label>
-              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="number" value={receita.Stock} disabled />
+              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="number" value={receita.stock} disabled />
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }}>Horários</Form.Label>
