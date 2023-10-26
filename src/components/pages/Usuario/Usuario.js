@@ -4,6 +4,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { Button } from "react-bootstrap";
 import { LoginContext } from '../../../context/LoginContext';
 import EditModal from "./EditMoral";
+import './Usuario.css';
 
 
 
@@ -17,22 +18,22 @@ const UsuarioPage = () => {
 
     useEffect(() => {
 
-        
-            async function getUser() {
-                try {
-                    const res = await fetch("http://localhost:5000/api/usuario", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(login) });
-                    const user = await res.json()
-                    setUsuario(user)
-                } catch (e) {
-                    return console.error(e)
-                }
-            };
+
+        async function getUser() {
+            try {
+                const res = await fetch("http://localhost:5000/api/usuario", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(login) });
+                const user = await res.json()
+                setUsuario(user)
+            } catch (e) {
+                return console.error(e)
+            }
+        };
 
 
-            getUser()
-        
+        getUser()
 
-    },[])
+
+    }, [])
 
 
 
@@ -42,12 +43,9 @@ const UsuarioPage = () => {
             <div className="info">
                 <Card style={{ width: '100%' }}>
                     <ListGroup variant="flush">
-                        <ListGroup.Item><img
-                            src={require("../../../images/default_profile_pic.png")}
-                            width="80"
-                            height="80"
-                            className="d-inline-block"
-                            alt="Imagem de Perfil" /><h3>Imagem de Perfil</h3></ListGroup.Item>
+                        <ListGroup.Item><div className='imgIniciaisUsuarioDiv'>
+                            <img className='imgIniciaisUsuario' src='https://ui-avatars.com/api/?size=128&rounded=true&background=random&color=random&bold=true&length=3&name=Willian+Salvi' />
+                        </div><h3>Imagem de Perfil</h3></ListGroup.Item>
                         <ListGroup.Item><h3>Nome:</h3><p>{`${usuario.primeiroNome}`}</p></ListGroup.Item>
                         <ListGroup.Item><h3>Sobrenome:</h3><p>{`${usuario.ultimoNome}`}</p></ListGroup.Item>
                         <ListGroup.Item><h3>Cédula de Enfermeiro:</h3><p>{`${usuario.cedulaPro}`}</p></ListGroup.Item>
@@ -58,7 +56,7 @@ const UsuarioPage = () => {
                 </Card>
             </div>
             <div className="botao">
-                <EditModal usuario={usuario}/>
+                <EditModal usuario={usuario} />
             </div>
         </div>
 
