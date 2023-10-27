@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Button } from "react-bootstrap";
 import { LoginContext } from '../../../context/LoginContext';
-import EditModal from "./EditMoral";
+import EditModal from "./EditModal";
 import './Usuario.css';
 
 
@@ -24,6 +24,7 @@ const UsuarioPage = () => {
                 const res = await fetch("http://localhost:5000/api/usuario", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(login) });
                 const user = await res.json()
                 setUsuario(user)
+                console.log(user)
             } catch (e) {
                 return console.error(e)
             }
