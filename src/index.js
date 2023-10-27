@@ -24,7 +24,7 @@ import Stock from './components/pages/Pacientes/Stock/Stock';
 import {Historico} from './components/pages/Pacientes/Historico/Historico';
 import MainHome from './components/pages/MainHome';
 import PaginationMasonry from './components/pages/Receitas/TabelaReceitas';
-import Usuario from './components/pages/Usuario/Usuario';
+import UsuarioPage from './components/pages/Usuario/Usuario';
 
 const router = createBrowserRouter([
     {
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'usuario',
-                element: <Usuario/>
+                element: <UsuarioPage/>
             },
             {
                 path: 'pacientes',

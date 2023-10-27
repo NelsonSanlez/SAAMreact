@@ -5,7 +5,7 @@ export default function Cards(){
         <section className="container pt-5 cards-container pb-5">
             <div className="row">
                 <div className="col card-container-col">
-                    <div className="card mb-3 mt-3">
+                    <div className="card cardMain mb-3 mt-3">
                         <div className="row g-0">
                             <div className="col-md-8">
                                 <div className="card-body">
@@ -29,7 +29,7 @@ export default function Cards(){
             </div>
             <div className="row">
                 <div className="col-md-6">
-                    <div className="card mb-3 mt-3">
+                    <div className="card cardMain mb-3 mt-3">
                         <div className="row g-0">
                             <div className="col-md-12">
                                 <div className="card-body">
@@ -45,7 +45,7 @@ export default function Cards(){
                     </div>
                 </div>
                 <div className="col-md-6">
-                    <div className="card mb-3 mt-3">
+                    <div className="card cardMain mb-3 mt-3">
                         <div className="row g-0">
                             <div className="col-md-12">
                                 <div className="card-body">
