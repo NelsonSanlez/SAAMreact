@@ -33,8 +33,8 @@ function ShowData({  }) {
   
   return (
 
-    <div>
-    <div>
+    <div className="pacientesMainGlobalDiv">
+    <div className="componentBtnsCrudPacDiv">
       <PacienteAdicionar />
     </div>
 

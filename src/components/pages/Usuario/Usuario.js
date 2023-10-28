@@ -1,37 +1,67 @@
+import { useState, useContext, useEffect } from "react";
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import { Button } from "react-bootstrap";
+import { LoginContext } from '../../../context/LoginContext';
+import EditModal from "./EditModal";
+import './Usuario.css';
 
 
 
-import './Usuario.css'
+const UsuarioPage = () => {
+
+    const { login } = useContext(LoginContext);
+    const [usuario, setUsuario] = useState({});
 
 
 
-export default function Usuario () {
 
-return(
-    <div className='usuarioGenDiv'>
-        <div className='imgIniciaisUsuarioDiv'>
-            <img className='imgIniciaisUsuario' src='https://ui-avatars.com/api/?size=128&rounded=true&background=random&color=random&bold=true&length=3&name=Willian+Salvi'/>
+    useEffect(() => {
+
+
+        async function getUser() {
+            try {
+                const res = await fetch("http://localhost:5000/api/usuario", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(login) });
+                const user = await res.json()
+                setUsuario(user)
+                console.log(user)
+            } catch (e) {
+                return console.error(e)
+            }
+        };
+
+
+        getUser()
+
+
+    }, [])
+
+
+
+
+    return (
+        <div className="container">
+            <div className="info">
+                <Card style={{ width: '100%' }}>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item><div className='imgIniciaisUsuarioDiv'>
+                            <img className='imgIniciaisUsuario' src={`https://ui-avatars.com/api/?size=128&rounded=true&background=random&color=random&bold=true&length=3&name=${usuario.primeiroNome}+${usuario.ultimoNome}`} />
+                        </div><h3>Imagem de Perfil</h3></ListGroup.Item>
+                        <ListGroup.Item><h3>Nome:</h3><p>{`${usuario.primeiroNome}`}</p></ListGroup.Item>
+                        <ListGroup.Item><h3>Sobrenome:</h3><p>{`${usuario.ultimoNome}`}</p></ListGroup.Item>
+                        <ListGroup.Item><h3>Cédula de Enfermeiro:</h3><p>{`${usuario.cedulaPro}`}</p></ListGroup.Item>
+                        <ListGroup.Item><h3>E-mail:</h3><p>{`${usuario.email}`}</p></ListGroup.Item>
+                        <ListGroup.Item><h3>Nº Telefone:</h3><p>{`${usuario.telefone}`}</p></ListGroup.Item>
+
+                    </ListGroup>
+                </Card>
+            </div>
+            <div className="botao">
+                <EditModal usuario={usuario} />
+            </div>
         </div>
-        <div className='txtNomeUsuarioPageDiv'>
-            Exemplo da Silva
-        </div>
-        <div className='dadosUsuarioPageDiv'>     
-<div>Nº de Usuario: 0105</div>
-<div>Nº de Telefone: 933692561</div>
-<div>Função: Cuidador</div>
-<div>Pacientes a cargo: Alice, João, Manuel</div>
-<div>Horário de trabalho: 23:00-07:00</div>
-        </div>
 
-
-
-
-    </div>
-)    
+    );
 }
 
-
-
-
-
-// https://ui-avatars.com/api/?size=128&rounded=true&background=random&color=random&bold=true&length=3&name=nelo+silva
+export default UsuarioPage;
