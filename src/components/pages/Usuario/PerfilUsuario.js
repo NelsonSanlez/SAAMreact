@@ -1,9 +1,4 @@
 import React, { useState, useRef } from "react";
-import Avatar from "react-avatar-edit";
-import { Dialog } from "primereact/dialog";
-import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
-import img from "../../../images/default_profile_pic.png";
 
 
 function Profile() {
