@@ -2,6 +2,7 @@ import styles from './Inicio.module.css';
 import { LoginContext } from "../../../context/LoginContext";
 import { useEffect, useContext, useState } from "react";
 import { Navigate } from 'react-router-dom';
+import Relogio from '../../Relogio/Relogio';
 
 
 function Inicio(props) {
@@ -403,38 +404,49 @@ function Inicio(props) {
     return (
         <div>
             <h5 className="p-1">Início</h5>
-            <div className="pt-4 col-md-4">
-                <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
-                    data-bs-target="#modalRegPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22"
-                        height="22" fill="currentColor" className="bi bi-person-plus" viewBox="0 0 16 16">
-                        <path
-                            d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                        <path fill-rule="evenodd"
-                            d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
-                    </svg> Adicionar Paciente</button>
-            </div>
-            {login.status === "admin" ?
-                <div className="pt-4 col-md-4">
-                    <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
-                        data-bs-target="#modalRegEnfermeiro"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-clipboard2-check" viewBox="0 0 16 16">
-                            <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z" />
-                            <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z" />
-                            <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3Z" />
-                        </svg> Adicionar Enfermeiro</button>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <Relogio />
+                    </div>
                 </div>
-                :
-                <div></div>}
-            {login.status === "admin" ?
-                <div className="pt-4 col-md-4">
-                    <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
-                        data-bs-target="#modalAtrPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                        </svg> Atribuir Paciente</button>
-                </div>
-                :
-                <div></div>
-            }
+                <div className="row mt-5">
+                    <div className="pt-4 col-md-4">
+                        <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
+                            data-bs-target="#modalRegPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                                height="22" fill="currentColor" className="bi bi-person-plus" viewBox="0 0 16 16">
+                                <path
+                                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                <path fill-rule="evenodd"
+                                    d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                            </svg> Adicionar Paciente</button>
+                    </div>
+                    {login.status === "admin" ?
+                        <div className="pt-4 col-md-4">
+                            <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
+                                data-bs-target="#modalRegEnfermeiro"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-clipboard2-check" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z" />
+                                    <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z" />
+                                    <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3Z" />
+                                </svg> Adicionar Enfermeiro</button>
+                        </div>
+                        :
+                        <div></div>}
+                    {login.status === "admin" ?
+                        <div className="pt-4 col-md-4">
+                            <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
+                                data-bs-target="#modalAtrPaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                                </svg> Atribuir Paciente</button>
+                        </div>
+                        :
+                        <div></div>
+                    }
 
+                </div>
+            </div>
+
+    
             {/* <div className="pt-4 col-md-4">
                 <button type="button" className={`btn btn-light border-black ${styles.btnInicio}`} data-bs-toggle="modal"
                     data-bs-target="#modalDeletePaciente"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">

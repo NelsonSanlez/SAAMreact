@@ -1,0 +1,94 @@
+body{
+    background-color: aliceblue;
+}
+
+.relContainer{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+
+
+.circleRel{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* z-index: -1; */
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+                -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+    /* background: conic-gradient(
+        yellow 15deg,
+        green 15deg 30deg,
+        red 30deg 45deg,
+        red 45deg 60deg,
+        green 60deg 75deg,
+        green 75deg 90deg,
+        yellow 90deg 105deg,
+        green 105deg 120deg,
+        green 120deg 135deg,
+        green 135deg 150deg,
+        green 150deg 165deg,
+        yellow 165deg 180deg,
+        yellow 180deg 195deg,
+        red 195deg 210deg,
+        red 210deg 225deg,
+        yellow 225deg 240deg,
+        yellow 240deg 255deg,
+        green 255deg 270deg,
+        green 270deg 285deg,
+        green 285deg 300deg,
+        green 300deg 315deg,
+        yellow 315deg 330deg,
+        green 330deg 345deg,
+        green 345deg 360deg
+
+    ); */
+    animation: linear 4s;
+}
+
+@keyframes animate {
+    0%
+    {
+        
+    }
+}
+
+.inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    inset: 0;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: white;
+    /* z-index: 1; */
+    background-image: url("../../images/relogiosimples2.png");
+    background-repeat: no-repeat;
+    background-position: 48%;
+    background-size: cover;
+    box-shadow: inset 6px 6px 10px -1px rgba(0, 0, 0, 0.5),
+                inset -6px -6px 10px -1px rgba(255, 255, 255, 0.5);
+}
+
+.free{
+    background-color: lightcyan;
+    width: 3rem;
+}
+
+.light{
+    background-color: #00ffff;
+}
+
+.moderate{
+    background-color: #00aaff;
+}
+
+.busy{
+    background-color: #0055cf;
+}
