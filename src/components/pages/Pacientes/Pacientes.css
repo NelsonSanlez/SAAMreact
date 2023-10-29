@@ -85,6 +85,14 @@
     margin-right: 0;
 }
 
+.pacientesMainGlobalDiv{
+    padding-right: 12px;
+}
+
+.componentBtnsCrudPacDiv{
+    /* position: sticky;       Causa um Erro na página!! */
+    top: 0px;
+}
 
 .work_path {
     font-size: 1.25rem;

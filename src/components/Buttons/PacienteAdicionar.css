@@ -6,9 +6,14 @@
     display: flex;
     align-items: center;
     justify-content:center;
-    background-color: blueviolet;
-    margin: 0;
-    padding: 0;
+    background-color: #11137e;
+    box-shadow: black 6px 4px 8px;
+    /* border-radius: 120% 112%; */
+    border-radius: 15px;
+    border-bottom-left-radius: 70% 50%;
+    margin-top: 0rem;
+    padding: 1rem;
+    padding-bottom: 2rem;
 }
 
 
@@ -20,6 +25,8 @@
     justify-content:center;
 }
 
-
-
-
+.btnAddPaciente,
+.btnDelPaciente,
+.btnEditPaciente{
+    box-shadow: black 6px 4px 8px;
+}

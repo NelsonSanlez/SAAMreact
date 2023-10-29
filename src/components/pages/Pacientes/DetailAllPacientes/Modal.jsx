@@ -57,7 +57,7 @@ let pacienteNotFound = 'Nº de Paciente não encontrado.'
 
                     <input className='inputName' type='text'
                       onChange={(e) => setInputName(e.target.value)} />
-                    <button onClick={filterByName} className='btnPrimary btnPorNome'>Filtrar por
+                    <button type='submit' onClick={filterByName} className='btnPrimary btnPorNome'>Filtrar por
                       <span className='bold'>: NOME</span>
                     </button>
 

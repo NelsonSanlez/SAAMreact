@@ -4,6 +4,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { Button } from "react-bootstrap";
 import { LoginContext } from '../../../context/LoginContext';
 import EditModal from "./EditModal";
+import ProfilePicModal from "./ProfilePicModal";
 import './Usuario.css';
 
 
@@ -57,6 +58,14 @@ const UsuarioPage = () => {
                     </ListGroup>
                 </Card>
             </div>
+                <div className="btnsBottomUsuario row">
+                    <div className="botao col-2">
+                        <EditModal usuario={usuario} />
+                    </div>
+                    <div className="botao col-3">
+                        <ProfilePicModal usuario={usuario} />
+                    </div>
+                </div>
         </div>
 
     );
