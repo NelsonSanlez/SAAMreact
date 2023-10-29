@@ -53,7 +53,6 @@ const UsuarioPage = () => {
                         <ListGroup.Item><h3>Cédula de Enfermeiro:</h3><p>{`${usuario.cedulaPro}`}</p></ListGroup.Item>
                         <ListGroup.Item><h3>E-mail:</h3><p>{`${usuario.email}`}</p></ListGroup.Item>
                         <ListGroup.Item><h3>Nº Telefone:</h3><p>{`${usuario.telefone}`}</p></ListGroup.Item>
-                        <ListGroup.Item><EditModal usuario={usuario} /></ListGroup.Item>
 
                     </ListGroup>
                 </Card>
