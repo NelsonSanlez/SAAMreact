@@ -53,7 +53,6 @@ function Inicio(props) {
                 console.log(res);
 
                 if (res.ok) {
-
                     setVerifyNumUtente(true)
                     return true
                 } else {
@@ -76,7 +75,7 @@ function Inicio(props) {
             }
         }
         verification()
-        setPaciente({ nome: "", sobrenome: "", numUtente: 0, telemovel: 0, email: "" });
+        setPaciente({ nome: "", sobrenome: "", numUtente: 0, telemovel: 0, email: "", [(login.status === "admin") ? 'idEntidade' : 'idNurse']: login.id });
     }
 
     const addEnfermeiro = async () => {
