@@ -3,18 +3,19 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 // import { Button } from "react-bootstrap";
 import { LoginContext } from '../../../context/LoginContext';
+// import { ProfPicContext } from "./ProfPicContext";
 import EditModal from "./EditModal";
 import ProfilePicModal from "./ProfilePicModal";
 import './Usuario.css';
 
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////
 const UsuarioPage = () => {
-
     const { login } = useContext(LoginContext);
+    // const { customProfPic  } = useContext(ProfPicContext);
     const [usuario, setUsuario] = useState({});
-    const [customProfPic, setCustomProfPic] = useState(true)
-
+    const [customProfPic, setCustomProfPic] = useState(false)
+//////////////////////////////////////////////////////////////////////////////////////////////
 const UsedPorfPic = ()=>{
     if (customProfPic === true) {
         return(
@@ -29,11 +30,8 @@ const UsedPorfPic = ()=>{
         </div>
     )
 }
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////
     useEffect(() => {
-
-
         async function getUser() {
             try {
                 const res = await fetch("http://localhost:5000/api/usuario", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(login) });
@@ -44,16 +42,11 @@ const UsedPorfPic = ()=>{
                 return console.error(e)
             }
         };
-
-
         getUser()
-
-
     }, [])
-
-
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////
+    useEffect(()=>{console.log("customProfPic: ",customProfPic)},[customProfPic])
+//////////////////////////////////////////////////////////////////////////////////////////////
     return (
         <div className="container">
             <div className="info">
@@ -66,7 +59,6 @@ const UsedPorfPic = ()=>{
                         <ListGroup.Item><h3>Cédula de Enfermeiro:</h3><p>{`${usuario.cedulaPro}`}</p></ListGroup.Item>
                         <ListGroup.Item><h3>E-mail:</h3><p>{`${usuario.email}`}</p></ListGroup.Item>
                         <ListGroup.Item><h3>Nº Telefone:</h3><p>{`${usuario.telefone}`}</p></ListGroup.Item>
-
                     </ListGroup>
                 </Card>
             </div>
@@ -75,11 +67,12 @@ const UsedPorfPic = ()=>{
                         <EditModal usuario={usuario} />
                     </div>
                     <div className="botao col-3">
-                        <ProfilePicModal usuario={usuario} />
+                        <ProfilePicModal usuario={usuario} 
+                        setCustomProfPic={setCustomProfPic} 
+                        />
                     </div>
                 </div>
         </div>
-
     );
 }
 

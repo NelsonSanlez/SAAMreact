@@ -11,14 +11,14 @@ padding: 1rem;
 }
 
 .imgIniciaisUsuario{
-    background-color:brown;
+    background-color:rgb(77, 121, 187);
     border:dotted 2px grey ;
     border-radius: 50%;
     box-shadow: black -3px 3px 44px 4px;
 }
 
 .imgCustomUsuario{
-    background-color:brown;
+    background-color:rgb(77, 121, 187);
     border:dotted 2px grey ;
     border-radius: 50%;
     box-shadow: black -3px 3px 44px 4px;
