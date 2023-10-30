@@ -1,28 +1,62 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, FormControl, Form } from 'react-bootstrap';
+
+
 import "./Receitas.css";
 
 
 function MaisInfo(props){
     const [showModal, setShowModal] = useState(false);
+    const [labelsDisabled, setLabelsDisabled] = useState(true);
+    const [medicamento, setMedicamento] = useState(props.propValue.medicamento);
+    const [dose, setDose] = useState(props.propValue.dose);
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
-    const handleEdit = () => setShowModal(false);
-    const handleDelete = () => setShowModal(false);
+    const handleEdit = () => {
+      
+      try{
+        editReceita();
+      alert("Receita editada com sucesso");
+    } catch (error) {
+      alert("Erro ao editar receita");
+    }
+    
+    };
+    const handleDelete = () => {
+      setShowModal(false);
+      alert("Receita eliminada com sucesso");
+    }
 
-    // link (get) -> passagem de parametros, é necessário usar userparams para os receber
-    // pode usar action ou load para fazer o pedido
+    //function to change all form controls
+  function editReceita () {
+      
+        setLabelsDisabled(!labelsDisabled);
+        
+        
+       /*  if (res.ok) {
+          alert("Receita editada com sucesso"); */
+       
+    }
 
-    // chegamos por loader ao carregar a pagina a primeira vez
-    // se vier por post vem relacionado com o action
+    const handleChangeMedicamento = (e) => {
+      setMedicamento(e.target.value);
+    };
+  
+    const handleChangeDose = (e) => {
+      setDose(e.target.value);
+    };
 
     // "retirar" a info das props para usar no modal
     const receita=props.propValue;
-    const horario=props.propValue.horarios;
+    const horarioss=props.propValue.horarios;
+
+    
     console.log("Props:",props.propValue.horarios)
     console.log("Receita:",receita)
-    console.log("Horarios:",horario)
+    console.log("Horariossss:",horarioss)
+    console.log("Medicamento:",medicamento)
+    console.log("Dose:",dose)
 
 return(
     <div className="m-0 p-0 rounded-4" id="card_info_value">
@@ -39,38 +73,38 @@ return(
           <Form>
             <Form.Group className="mb-3 row " >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }} >Nome</Form.Label>
-              <Form.Control className="col rounded-4 me-5" type="text" value={receita.medicamento} style={{backgroundColor: '#CAF0F8'}} disabled />
+              <Form.Control className="col rounded-4 me-5" type="text" value={receita.medicamento} style={{backgroundColor: '#CAF0F8'}} disabled={labelsDisabled? 'disabled' : undefined} onChange={handleChangeDose} />
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }} >Dose</Form.Label>
-              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.dose} disabled />
+              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.dose} disabled={labelsDisabled? 'disabled' : undefined} onChange={handleChangeDose}/>
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }}>Validade</Form.Label>
-              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.validade} disabled />
+              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.validade} disabled={labelsDisabled? 'disabled' : undefined} onChange={handleChangeDose} />
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }}>Data Início</Form.Label>
-              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.dataInicio} disabled />
+              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.dataInicio} disabled={labelsDisabled? 'disabled' : undefined} onChange={handleChangeDose}/>
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }}>Data Fim</Form.Label>
-              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.dataFim} disabled />
+              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="text" value={receita.dataFim} disabled={labelsDisabled? 'disabled' : undefined} onChange={handleChangeDose}/>
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }}>Stock</Form.Label>
-              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="number" value={receita.stock} disabled />
+              <Form.Control className="col rounded-4 me-5" style={{backgroundColor: '#CAF0F8'}} type="number" value={receita.stock} disabled={labelsDisabled? 'disabled' : undefined} onChange={handleChangeDose}/>
             </Form.Group>
             <Form.Group className="mb-3 row" >
               <Form.Label className="col-2 px-4 " style={{ justifyContent: 'flex-end', display:'flex' }}>Horários</Form.Label>
-              {/* <div className="col ps-0">
-              {horarios.map((horario, index) => (
+               <div className="col ps-0">
+              {horarioss.map((val, index) => (
                 <div key={index}>
-                  <Form.Control  className="transparent-input col rounded-0" style={{backgroundColor: '#CAF0F8'}}  type="text"  value={horario}  disabled      readOnly
+                  <Form.Control  className="transparent-input col rounded-0" style={{backgroundColor: '#CAF0F8'}}  type="text"  value={val.horario}  disabled={labelsDisabled? 'disabled' : undefined}  onChange={handleChangeDose}
                   />
                 </div>
               ))}
-              </div> */}
+              </div> 
             </Form.Group>
           </Form>
           </div>  

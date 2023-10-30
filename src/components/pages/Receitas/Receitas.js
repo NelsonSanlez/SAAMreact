@@ -25,7 +25,7 @@ function Receitas(props) {
 
     fetchData();
   }, [props.id]);
-
+  
   return (
     <div>
       <div className="row  ">
@@ -69,7 +69,7 @@ function Receitas(props) {
             <div className="col "></div>
             <div className="col-7 m-0 p-0 " >
              
-                <MaisInfo propValue={recipeData}/>
+                <MaisInfo propValue={props.item}/>
             </div>
           </div>
         </div>

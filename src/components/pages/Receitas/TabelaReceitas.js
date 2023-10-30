@@ -71,6 +71,8 @@ const PaginationMasonry = () => {
     const newOffset = (event.selected * itemsPerPage) % TotalItems.length;
     setItemsOffset(newOffset);
   };
+  console.log("TotalItems:",TotalItems)
+  console.log("currentItems:",currentItems)
 
   function MasonryComponent(){
     return (
