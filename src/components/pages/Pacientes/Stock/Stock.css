@@ -1,0 +1,24 @@
+
+/* apagar */
+.btnVerMsagesTxt{
+    font-size: 0.1rem;
+}
+
+.numMensagens{
+padding: 0.2rem;
+margin: 0.2rem;
+border-right: solid blue 3px;
+border-bottom: solid blue 3px;
+}
+
+.textMensagens{
+    padding: 0.2rem;
+    margin: 0.2rem;
+    border-right: solid blue 3px;
+    border-bottom: solid blue 3px;
+}
+
+.titlesMsg{
+    font-size: 1.035rem;
+    font-weight: bold;
+}
