@@ -1,6 +1,5 @@
 
 
-
 .usuarioGenDiv{
 /* background-color: burlywood; */
 padding: 1rem;
@@ -18,8 +17,14 @@ padding: 1rem;
     box-shadow: black -3px 3px 44px 4px;
 }
 
-
-
+.imgCustomUsuario{
+    background-color:brown;
+    border:dotted 2px grey ;
+    border-radius: 50%;
+    box-shadow: black -3px 3px 44px 4px;
+    width: 128px;
+    margin: 10px;
+}
 
 .txtNomeUsuarioPageDiv{
     /* background-color:brown; */
@@ -37,4 +42,9 @@ padding: 1rem;
 .btnsBottomUsuario{
     padding: 0.78rem;
     padding-left: 0 ;
+}
+
+.imgUploadProfPic{
+    width: 300px;
+    margin: 10px;
 }
