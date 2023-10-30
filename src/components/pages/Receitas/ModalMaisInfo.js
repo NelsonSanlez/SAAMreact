@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, FormControl, Form } from 'react-bootstrap';
-
+import { toast } from "react-toastify";
 
 import "./Receitas.css";
 
@@ -10,6 +10,7 @@ function MaisInfo(props){
     const [labelsDisabled, setLabelsDisabled] = useState(true);
     const [medicamento, setMedicamento] = useState(props.propValue.medicamento);
     const [dose, setDose] = useState(props.propValue.dose);
+    
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
@@ -17,15 +18,17 @@ function MaisInfo(props){
       
       try{
         editReceita();
-      alert("Receita editada com sucesso");
+      toast.info("Receita editada com sucesso");
+      console.log("Receita editada");
     } catch (error) {
-      alert("Erro ao editar receita");
+      toast.error("Erro ao editar receita");
     }
     
     };
     const handleDelete = () => {
+      toast.error("Receita eliminada com sucesso");
+      console.log("Receita eliminada");
       setShowModal(false);
-      alert("Receita eliminada com sucesso");
     }
 
     //function to change all form controls
@@ -59,8 +62,13 @@ function MaisInfo(props){
     console.log("Dose:",dose)
 
 return(
+  <>
+  
     <div className="m-0 p-0 rounded-4" id="card_info_value">
+           
+
     <div>
+
       <Button variant="light" className="btn-m w-100 h-100 bgCyan border-0 btn-hover-effect rounded-4" onClick={handleShow}>
         Ver receita
       </Button>
@@ -112,14 +120,14 @@ return(
         <Modal.Footer className="bgBlue justify-content-center">
           <Button variant="light" className="rounded-4 bgCyan border-0" onClick={handleEdit}>Editar</Button>
           <Button variant="danger" className="rounded-4  border-0" onClick={handleDelete}>Eliminar</Button>
-          
+
         </Modal.Footer>
       </Modal>
     </div>
 
-        
-
 </div>
+  </>
+  
 )
 
 

@@ -5,6 +5,8 @@ import { ResponsiveMasonry } from "react-responsive-masonry";
 import { LoginContext } from "../../../context/LoginContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 // Define a component that uses the Masonry layout to display a list of items
@@ -76,7 +78,9 @@ const PaginationMasonry = () => {
 
   function MasonryComponent(){
     return (
-       <Masonry
+    
+
+<Masonry
         className="masonry  "
         columnClassName="masonry-column  "
         style={{ display: "flex" }}
@@ -90,12 +94,16 @@ const PaginationMasonry = () => {
           />
         ))}
       </Masonry>
+      
+     
     )
   }
 
   return (
     <div>
+       
      <div className="row  " style={{display:"flex",alignContent:"space-around" }}>
+      
       <div className="col-10">
      <ReactPaginate
         previousLabel={"← Anterior"}
@@ -121,6 +129,7 @@ const PaginationMasonry = () => {
 
       <MasonryComponent/>
       
+      <ToastContainer position='top-center' autoClose={3000} />
     </div>
   );
 };
